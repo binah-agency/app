@@ -1,9 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const tabs = ['HOMBRE', 'MUJER', 'NIÑOS', 'DEPORTIVO'];
+interface CategoryItem {
+  title: string;
+  subtitle: string;
+  image: string;
+}
 
-const categoryData: Record<string, { title: string; subtitle: string; image: string }[]> = {
+interface CategoryData {
+  [key: string]: CategoryItem[];
+}
+
+const tabs = ['HOMBRE', 'MUJER', 'NIÑOS', 'DEPORTIVO'] as const;
+
+const categoryData: CategoryData = {
   HOMBRE: [
     { title: 'JEANS SLIM FIT', subtitle: '15 Estilos Disponibles', image: '/images/cat-men-1.jpg' },
     { title: 'JEANS RECTO', subtitle: '12 Estilos Disponibles', image: '/images/cat-men-2.jpg' },
@@ -30,15 +41,22 @@ const categoryData: Record<string, { title: string; subtitle: string; image: str
   ],
 };
 
-export default function CategoryTabs() {
-  const [activeTab, setActiveTab] = useState('HOMBRE');
-  const gridRef = useRef<HTMLDivElement>(null);
+const checkReducedMotion = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
 
-  const handleTabChange = (tab: string) => {
+export default function CategoryTabs() {
+  const [activeTab, setActiveTab] = useState<typeof tabs[number]>('HOMBRE');
+  const gridRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useRef(checkReducedMotion());
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const handleTabChange = useCallback((tab: typeof tabs[number]) => {
     if (tab === activeTab) return;
 
     const grid = gridRef.current;
-    if (!grid) {
+    if (!grid || prefersReducedMotion.current) {
       setActiveTab(tab);
       return;
     }
@@ -53,9 +71,40 @@ export default function CategoryTabs() {
         setActiveTab(tab);
       },
     });
-  };
+  }, [activeTab]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let newIndex = index;
+    
+    switch (e.key) {
+      case 'ArrowRight':
+        e.preventDefault();
+        newIndex = (index + 1) % tabs.length;
+        tabRefs.current[newIndex]?.focus();
+        handleTabChange(tabs[newIndex]);
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        newIndex = (index - 1 + tabs.length) % tabs.length;
+        tabRefs.current[newIndex]?.focus();
+        handleTabChange(tabs[newIndex]);
+        break;
+      case 'Home':
+        e.preventDefault();
+        tabRefs.current[0]?.focus();
+        handleTabChange(tabs[0]);
+        break;
+      case 'End':
+        e.preventDefault();
+        tabRefs.current[tabs.length - 1]?.focus();
+        handleTabChange(tabs[tabs.length - 1]);
+        break;
+    }
+  }, [handleTabChange]);
 
   useEffect(() => {
+    if (prefersReducedMotion.current) return;
+
     const grid = gridRef.current;
     if (!grid) return;
 
@@ -65,30 +114,43 @@ export default function CategoryTabs() {
       { opacity: 0, y: 10 },
       { opacity: 1, y: 0, stagger: 0.08, duration: 0.35, ease: 'power2.out' }
     );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, [activeTab]);
 
   return (
     <section id="categorias" className="bg-brand-yellow py-20 lg:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="scroll-reveal text-center mb-12 lg:mb-16">
-          <h2 className="reveal-item font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-text-dark mb-4">
+          <h2 className="reveal-item font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-dark mb-4">
             COMPRAR POR CATEGORÍA
           </h2>
-          <p className="reveal-item font-body text-lg text-text-dark/70">
+          <p className="reveal-item font-body text-lg text-brand-dark/70">
             Encuentra los estilos perfectos para tu inventario
           </p>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-3 lg:gap-4 mb-10 lg:mb-12">
-          {tabs.map((tab) => (
+        <div 
+          className="flex flex-wrap justify-center gap-3 lg:gap-4 mb-10 lg:mb-12"
+          role="tablist"
+          aria-label="Categorías de productos"
+        >
+          {tabs.map((tab, index) => (
             <button
               key={tab}
+              ref={(el) => { tabRefs.current[index] = el; }}
               onClick={() => handleTabChange(tab)}
-              className={`font-accent text-sm font-medium uppercase tracking-[1.5px] px-6 sm:px-8 py-3 border-2 border-text-dark transition-all duration-300 ${
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              role="tab"
+              aria-selected={activeTab === tab}
+              aria-controls="category-panel"
+              tabIndex={activeTab === tab ? 0 : -1}
+              className={`font-accent text-sm font-medium uppercase tracking-[1.5px] px-6 sm:px-8 py-3 border-2 border-brand-dark transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-dark focus:ring-offset-2 ${
                 activeTab === tab
-                  ? 'bg-text-dark text-brand-yellow'
-                  : 'bg-transparent text-text-dark hover:bg-black/10'
+                  ? 'bg-brand-dark text-brand-yellow'
+                  : 'bg-transparent text-brand-dark hover:bg-black/10 focus:bg-black/10'
               }`}
             >
               {tab}
@@ -96,14 +158,16 @@ export default function CategoryTabs() {
           ))}
         </div>
 
-        {/* Grid */}
         <div
+          id="category-panel"
           ref={gridRef}
+          role="tabpanel"
+          aria-label={`Categoría ${activeTab}`}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
         >
           {categoryData[activeTab].map((item, i) => (
-            <div
-              key={`${activeTab}-${i}`}
+            <article
+              key={`${activeTab}-${item.title}`}
               className="cat-card group cursor-pointer"
             >
               <div className="overflow-hidden mb-3">
@@ -111,19 +175,19 @@ export default function CategoryTabs() {
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
-                  className="w-full aspect-[3/4] object-cover transition-transform duration-400 group-hover:scale-[1.03]"
+                  className="w-full aspect-[3/4] object-cover transition-transform duration-400 group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
                 />
               </div>
-              <h3 className="font-display text-xl lg:text-2xl text-text-dark">{item.title}</h3>
+              <h3 className="font-display text-xl lg:text-2xl text-brand-dark">{item.title}</h3>
               <p className="font-body text-sm text-text-muted">{item.subtitle}</p>
-            </div>
+            </article>
           ))}
         </div>
 
         <div className="text-center mt-10 lg:mt-12">
           <a
             href="#catalogo"
-            className="inline-block bg-text-dark text-brand-yellow px-8 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] hover:bg-black transition-colors duration-300"
+            className="btn-primary"
           >
             Ver Todas las Categorías
           </a>

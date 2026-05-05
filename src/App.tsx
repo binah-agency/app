@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
@@ -13,13 +13,19 @@ import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 function App() {
   const mainRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useRef(false);
 
-  useEffect(() => {
-    // Scroll reveal animations for all sections
+  const initGSAP = useCallback(() => {
+    if (prefersReducedMotion.current) return;
+
+    gsap.config({ nullTargetWarn: false });
+
     const sections = document.querySelectorAll('.scroll-reveal');
     sections.forEach((section) => {
       const children = section.querySelectorAll('.reveal-item');
@@ -42,23 +48,41 @@ function App() {
         );
       }
     });
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    prefersReducedMotion.current = mediaQuery.matches;
+    
+    if (!prefersReducedMotion.current) {
+      initGSAP();
+    }
+
+    const handleAnimationEnd = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('load', handleAnimationEnd);
 
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
+      window.removeEventListener('load', handleAnimationEnd);
     };
-  }, []);
+  }, [initGSAP]);
 
   return (
-    <div ref={mainRef} className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
-      <ParallaxGallery />
-      <CategoryTabs />
-      <FeaturesBanner />
-      <ProductShowcase />
-      <AboutSection />
-      <Testimonials />
-      <CTASection />
+      <main id="main-content" ref={mainRef}>
+        <Hero />
+        <ParallaxGallery />
+        <CategoryTabs />
+        <FeaturesBanner />
+        <ProductShowcase />
+        <AboutSection />
+        <Testimonials />
+        <CTASection />
+      </main>
       <Footer />
       <WhatsAppButton />
     </div>

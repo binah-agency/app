@@ -2,7 +2,11 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+interface GalleryRowProps {
+  images: string[];
+  direction: 'left' | 'right';
+  speed: number;
+}
 
 const galleryImages = [
   '/images/gallery-1.jpg',
@@ -15,19 +19,20 @@ const galleryImages = [
   '/images/gallery-8.jpg',
 ];
 
-// Duplicate images for seamless loop
 const rowImages = [...galleryImages, ...galleryImages];
 
-interface GalleryRowProps {
-  images: string[];
-  direction: 'left' | 'right';
-  speed: number;
-}
+const checkReducedMotion = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
 
 function GalleryRow({ images, direction, speed }: GalleryRowProps) {
   const rowRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useRef(checkReducedMotion());
 
   useEffect(() => {
+    if (prefersReducedMotion.current) return;
+
     const row = rowRef.current;
     if (!row) return;
 
@@ -50,12 +55,12 @@ function GalleryRow({ images, direction, speed }: GalleryRowProps) {
   }, [direction, speed]);
 
   return (
-    <div ref={rowRef} className="gallery-row">
+    <div ref={rowRef} className="gallery-row" aria-hidden="true">
       {images.map((img, i) => (
         <img
-          key={i}
+          key={`${img}-${i}`}
           src={img}
-          alt={`Gallery image ${i + 1}`}
+          alt=""
           loading="lazy"
           className="flex-shrink-0"
         />
@@ -66,9 +71,11 @@ function GalleryRow({ images, direction, speed }: GalleryRowProps) {
 
 export default function ParallaxGallery() {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const prefersReducedMotion = useRef(checkReducedMotion());
 
   useEffect(() => {
-    if (!titleRef.current) return;
+    if (prefersReducedMotion.current || !titleRef.current) return;
+
     gsap.fromTo(
       titleRef.current,
       { y: 30, opacity: 0 },
@@ -84,23 +91,47 @@ export default function ParallaxGallery() {
         },
       }
     );
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
+
+  if (prefersReducedMotion.current) {
+    return (
+      <section className="bg-bg-light py-16 lg:py-20">
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-dark text-center mb-10 lg:mb-12 px-4">
+          NUESTRAS COLECCIONES
+        </h2>
+        <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 px-6">
+          {galleryImages.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt={`Colección ${i + 1}`}
+              loading="lazy"
+              className="w-full aspect-[3/4] object-cover"
+            />
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-bg-light py-16 lg:py-20 overflow-hidden">
       <h2
         ref={titleRef}
-        className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-text-dark text-center mb-10 lg:mb-12 px-4"
+        className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-dark text-center mb-10 lg:mb-12 px-4"
       >
         NUESTRAS COLECCIONES
       </h2>
 
-      <div className="gallery-wrapper flex flex-col gap-2">
+      <div className="gallery-wrapper flex flex-col gap-2" aria-hidden="true">
         <GalleryRow images={rowImages} direction="right" speed={35} />
         <GalleryRow images={[...rowImages].reverse()} direction="left" speed={45} />
 
-        {/* Text mask row */}
-        <div className="overflow-hidden py-4">
+        <div className="overflow-hidden py-4" aria-hidden="true">
           <div className="flex whitespace-nowrap">
             {Array.from({ length: 8 }).map((_, i) => (
               <span
@@ -116,8 +147,7 @@ export default function ParallaxGallery() {
         <GalleryRow images={rowImages.slice(2).concat(rowImages.slice(0, 2))} direction="right" speed={25} />
         <GalleryRow images={[...rowImages].reverse().slice(3).concat([...rowImages].reverse().slice(0, 3))} direction="left" speed={40} />
 
-        {/* Text mask row */}
-        <div className="overflow-hidden py-4">
+        <div className="overflow-hidden py-4" aria-hidden="true">
           <div className="flex whitespace-nowrap">
             {Array.from({ length: 8 }).map((_, i) => (
               <span

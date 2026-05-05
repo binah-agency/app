@@ -26,16 +26,44 @@
     --radius: 0rem;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
-    @apply bg-white text-text-dark;
+    @apply bg-white text-brand-dark;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  html {
-    scroll-behavior: smooth;
+  * {
+    scroll-margin-top: 4rem;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 }
 
@@ -63,9 +91,64 @@
     flex-shrink: 0;
   }
 
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-brand-yellow text-brand-dark px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    @apply bg-brand-dark text-brand-yellow;
+  }
+
+  .btn-primary:focus {
+    @apply outline-none ring-2 ring-brand-yellow ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center bg-transparent border-2 border-brand-dark text-brand-dark px-8 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] transition-all duration-300;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-brand-dark text-white;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-5 py-2.5 font-accent text-[13px] font-medium uppercase tracking-[1px] transition-colors duration-300;
+  }
+
+  .btn-whatsapp:hover {
+    @apply bg-[#128C7E];
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-bg-gray;
+  }
+
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-[2px] w-0 bg-current transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
   @media (max-width: 768px) {
     .gallery-row img {
       height: 150px;
+    }
+  }
+
+  @media (hover: none) {
+    .group:hover .group-hover\:translate-y-0 {
+      transform: translateY(0);
+    }
+    
+    .group-hover\:scale-[1.03] {
+      transform: scale(1.03);
     }
   }
 }
@@ -73,5 +156,22 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .no-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
   }
 }

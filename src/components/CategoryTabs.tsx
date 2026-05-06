@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { X } from 'lucide-react';
 
 interface CategoryItem {
   title: string;
@@ -48,6 +49,7 @@ const checkReducedMotion = (): boolean => {
 
 export default function CategoryTabs() {
   const [activeTab, setActiveTab] = useState<typeof tabs[number]>('HOMBRE');
+  const [selectedCategory, setSelectedCategory] = useState<CategoryItem | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -121,13 +123,13 @@ export default function CategoryTabs() {
   }, [activeTab]);
 
   return (
-    <section id="categorias" className="bg-brand-yellow py-20 lg:py-28">
+    <section id="categorias" className="bg-brand-secondary py-20 lg:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="scroll-reveal text-center mb-12 lg:mb-16">
-          <h2 className="reveal-item font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-dark mb-4">
+          <h2 className="reveal-item font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white mb-4">
             COMPRAR POR CATEGORÍA
           </h2>
-          <p className="reveal-item font-body text-lg text-brand-dark/70">
+          <p className="reveal-item font-body text-lg text-neutral-200">
             Encuentra los estilos perfectos para tu inventario
           </p>
         </div>
@@ -147,10 +149,10 @@ export default function CategoryTabs() {
               aria-selected={activeTab === tab}
               aria-controls="category-panel"
               tabIndex={activeTab === tab ? 0 : -1}
-              className={`font-accent text-sm font-medium uppercase tracking-[1.5px] px-6 sm:px-8 py-3 border-2 border-brand-dark transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-dark focus:ring-offset-2 ${
+              className={`font-accent text-sm font-medium uppercase tracking-[1.5px] px-6 sm:px-8 py-3 border-2 border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 rounded-full ${
                 activeTab === tab
-                  ? 'bg-brand-dark text-brand-yellow'
-                  : 'bg-transparent text-brand-dark hover:bg-black/10 focus:bg-black/10'
+                  ? 'bg-white text-brand-navy'
+                  : 'bg-transparent text-white hover:bg-white/20 focus:bg-white/20'
               }`}
             >
               {tab}
@@ -165,10 +167,14 @@ export default function CategoryTabs() {
           aria-label={`Categoría ${activeTab}`}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
         >
-          {categoryData[activeTab].map((item, i) => (
+          {categoryData[activeTab].map((item) => (
             <article
               key={`${activeTab}-${item.title}`}
-              className="cat-card group cursor-pointer"
+              className="cat-card group cursor-pointer rounded-sm overflow-hidden lg:cursor-default"
+              onClick={() => setSelectedCategory(item)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ver detalles de ${item.title}`}
             >
               <div className="overflow-hidden mb-3">
                 <img
@@ -178,8 +184,8 @@ export default function CategoryTabs() {
                   className="w-full aspect-[3/4] object-cover transition-transform duration-400 group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
                 />
               </div>
-              <h3 className="font-display text-xl lg:text-2xl text-brand-dark">{item.title}</h3>
-              <p className="font-body text-sm text-text-muted">{item.subtitle}</p>
+              <h3 className="font-display text-xl lg:text-2xl text-white">{item.title}</h3>
+              <p className="font-body text-sm text-neutral-300">{item.subtitle}</p>
             </article>
           ))}
         </div>
@@ -193,6 +199,50 @@ export default function CategoryTabs() {
           </a>
         </div>
       </div>
+
+      {selectedCategory && (
+        <div 
+          className="fixed inset-0 z-[90] flex items-center justify-center p-4 lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Detalles de ${selectedCategory.title}`}
+        >
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setSelectedCategory(null)}
+          />
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 animate-in fade-in zoom-in-95 duration-300">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
+              aria-label="Cerrar"
+            >
+              <X size={20} />
+            </button>
+            
+            <img
+              src={selectedCategory.image}
+              alt={selectedCategory.title}
+              className="w-full aspect-[3/4] object-cover rounded-xl mb-4"
+            />
+            
+            <h3 className="font-display text-2xl text-brand-navy mb-2">
+              {selectedCategory.title}
+            </h3>
+            <p className="font-body text-text-muted mb-4">
+              {selectedCategory.subtitle}
+            </p>
+            
+            <a
+              href="#catalogo"
+              onClick={() => setSelectedCategory(null)}
+              className="btn-primary w-full text-center block"
+            >
+              Ver Catálogo
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -62,61 +62,6 @@ export default function AboutSection() {
     };
   }, []);
 
-  if (prefersReducedMotion.current) {
-    return (
-      <section className="bg-bg-light py-20 lg:py-28">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
-            <div className="about-left w-full lg:w-[45%]">
-              <img
-                src="/images/about-factory.jpg"
-                alt="Nuestra fábrica de denim"
-                loading="lazy"
-                className="w-full aspect-[4/5] object-cover"
-              />
-            </div>
-            <div className="about-right w-full lg:w-[55%] lg:pl-8">
-              <span className="font-accent text-sm font-medium tracking-[2px] uppercase text-text-muted mb-4 block">
-                SOBRE VIRUS JEANS
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-brand-dark leading-[1.0] mb-6">
-                DENIM CREADO
-                <br />
-                PARA LOS AUDACES
-              </h2>
-              <p className="font-body text-base lg:text-lg text-[#333] leading-[1.7] mb-8">
-                Desde 2010, Virus Jeans ha sido un proveedor mayorista líder de denim premium y ropa deportiva.
-                Nos asociamos con minoristas en todo el país, ofreciendo diseños a la vanguardia de las tendencias
-                a precios competitivos al por mayor. Nuestro compromiso con materiales de calidad y manufactura
-                ética nos distingue.
-              </p>
-              <div className="flex flex-wrap gap-8 lg:gap-10 mb-8">
-                <div>
-                  <span className="font-display text-3xl lg:text-4xl text-brand-dark">{COMPANY.retailPartners}+</span>
-                  <p className="font-body text-sm text-text-muted mt-1">Socios Minoristas</p>
-                </div>
-                <div>
-                  <span className="font-display text-3xl lg:text-4xl text-brand-dark">{COMPANY.yearsExperience}</span>
-                  <p className="font-body text-sm text-text-muted mt-1">Años en el Negocio</p>
-                </div>
-                <div>
-                  <span className="font-display text-3xl lg:text-4xl text-brand-dark">100%</span>
-                  <p className="font-body text-sm text-text-muted mt-1">Calidad Inspeccionada</p>
-                </div>
-              </div>
-              <a
-                href="#contacto"
-                className="inline-block font-accent text-sm font-medium uppercase text-brand-dark border-b-2 border-brand-dark pb-1 hover:border-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300"
-              >
-                Conocer Más
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section ref={sectionRef} className="bg-bg-light py-20 lg:py-28">
       <div className="max-w-[1400px] mx-auto px-6">
@@ -133,34 +78,37 @@ export default function AboutSection() {
             <span className="font-accent text-sm font-medium tracking-[2px] uppercase text-text-muted mb-4 block">
               SOBRE VIRUS JEANS
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-brand-dark leading-[1.0] mb-6">
-              DENIM CREADO
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-brand-navy700 leading-[1.0] mb-6">
+              LÍDERES EN
               <br />
-              PARA LOS AUDACES
+              DENIM VENEZOLANO
             </h2>
-            <p className="font-body text-base lg:text-lg text-[#333] leading-[1.7] mb-8">
-              Desde 2010, Virus Jeans ha sido un proveedor mayorista líder de denim premium y ropa deportiva.
-              Nos asociamos con minoristas en todo el país, ofreciendo diseños a la vanguardia de las tendencias
-              a precios competitivos al por mayor. Nuestro compromiso con materiales de calidad y manufactura
-              ética nos distingue.
+            <p className="font-body text-base lg:text-lg text-neutral-700 leading-[1.7] mb-6">
+              Desde 2010, <strong>Virus Jeans, C.A.</strong> es el proveedor mayorista líder de denim premium en Venezuela. 
+              Ubicados en Valencia, Carabobo, sirvemos a minoristas y distribuidores en todo el país con la mejor 
+              relación calidad-precio del mercado.
+            </p>
+            <p className="font-body text-base lg:text-lg text-neutral-700 leading-[1.7] mb-8">
+              Nuestro compromiso con telas premium, construcción duradera y atención personalizada nos ha permitido 
+              convertirnos en el partenaire favorito de cientos de comercios en Venezuela.
             </p>
             <div className="flex flex-wrap gap-8 lg:gap-10 mb-8">
               <div>
-                <span className="font-display text-3xl lg:text-4xl text-brand-dark">{COMPANY.retailPartners}+</span>
-                <p className="font-body text-sm text-text-muted mt-1">Socios Minoristas</p>
+                <span className="font-display text-3xl lg:text-4xl text-brand-navy700">{COMPANY.yearsExperience}</span>
+                <p className="font-body text-sm text-neutral-500 mt-1">Años de Experiencia</p>
               </div>
               <div>
-                <span className="font-display text-3xl lg:text-4xl text-brand-dark">{COMPANY.yearsExperience}</span>
-                <p className="font-body text-sm text-text-muted mt-1">Años en el Negocio</p>
+                <span className="font-display text-3xl lg:text-4xl text-brand-navy700">{COMPANY.monthlyUnits}</span>
+                <p className="font-body text-sm text-neutral-500 mt-1">Unidades Mensuales</p>
               </div>
               <div>
-                <span className="font-display text-3xl lg:text-4xl text-brand-dark">100%</span>
-                <p className="font-body text-sm text-text-muted mt-1">Calidad Inspeccionada</p>
+                <span className="font-display text-3xl lg:text-4xl text-brand-navy700">500+</span>
+                <p className="font-body text-sm text-neutral-500 mt-1">Socios Comerciales</p>
               </div>
             </div>
             <a
-              href="#contacto"
-              className="inline-block font-accent text-sm font-medium uppercase text-brand-dark border-b-2 border-brand-dark pb-1 hover:border-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300"
+              href="#catalogo"
+              className="btn-secondary"
             >
               Conocer Más
             </a>

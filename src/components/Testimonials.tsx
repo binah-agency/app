@@ -73,22 +73,22 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-brand-yellow py-20 lg:py-28">
+    <section ref={sectionRef} className="bg-brand-secondary py-20 lg:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-brand-dark text-center mb-12 lg:mb-16">
+        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-brand-navy700 text-center mb-12 lg:mb-16">
           LO QUE DICEN NUESTROS SOCIOS
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10 lg:mb-12">
           {testimonials.map((t) => (
-            <article key={t.id} className="testimonial-card bg-brand-dark p-8 lg:p-10">
+            <article key={t.id} className="testimonial-card bg-brand-navy p-8 lg:p-10" style={{ borderRadius: '16px' }}>
               <blockquote className="font-body text-base lg:text-lg text-white leading-[1.7] mb-6">
                 "{t.quote}"
               </blockquote>
               <div className="border-t border-[#333] pt-6">
                 <div className="flex items-center gap-4">
                   <div 
-                    className="w-12 h-12 rounded-full bg-[#333] flex items-center justify-center"
+                    className="w-12 h-12 rounded-full bg-[#333] flex items-center justify-center ring-2 ring-brand-secondary/30"
                     aria-hidden="true"
                   >
                     <span className="font-accent text-sm font-semibold text-white">
@@ -99,7 +99,7 @@ export default function Testimonials() {
                     <p className="font-accent text-sm font-semibold tracking-[1px] text-white">
                       {t.name}
                     </p>
-                    <p className="font-body text-sm text-[#999]">{t.role}</p>
+                    <p className="font-body text-sm text-neutral-500">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export default function Testimonials() {
             href={CONTACT.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-brand-dark text-brand-yellow px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] hover:bg-black focus:outline-none focus:ring-2 focus:ring-brand-dark focus:ring-offset-2 transition-colors duration-300"
+            className="inline-block bg-brand-navy text-white px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] hover:bg-brand-navyHover focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2 transition-colors duration-300 rounded-full"
           >
             Conviértete en Socio
           </a>

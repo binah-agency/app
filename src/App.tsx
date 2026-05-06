@@ -11,7 +11,9 @@ import AboutSection from './components/AboutSection';
 import Testimonials from './components/Testimonials';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
+import ExitIntentModal from './components/ExitIntentModal';
+import NewsletterModal from './components/NewsletterModal';
+import QuickContactModal from './components/QuickContactModal';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -84,7 +86,10 @@ function App() {
         <CTASection />
       </main>
       <Footer />
-      <WhatsAppButton />
+      <ExitIntentModal>
+        <NewsletterModal />
+      </ExitIntentModal>
+      <QuickContactModal />
     </div>
   );
 }

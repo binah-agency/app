@@ -11,17 +11,8 @@ export default function Hero() {
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(true);
   const [imageError, setImageError] = useState(false);
-
-  const handleImageLoad = useCallback(() => {
-    setImageLoaded(true);
-  }, []);
-
-  const handleImageError = useCallback(() => {
-    setImageError(true);
-    setImageLoaded(true);
-  }, []);
 
   useEffect(() => {
     if (prefersReducedMotion.current) {
@@ -65,7 +56,7 @@ export default function Hero() {
     >
       <div
         ref={leftRef}
-        className="w-full lg:w-1/2 bg-brand-dark flex flex-col justify-between p-6 sm:p-8 lg:p-12 xl:p-16 min-h-[50vh] lg:min-h-screen relative"
+        className="w-full lg:w-1/2 gradient-mesh-hero flex flex-col justify-between p-6 sm:p-8 lg:p-12 xl:p-16 min-h-[50vh] lg:min-h-screen relative"
       >
         <div className="hero-animate pt-16 lg:pt-0">
           <span className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white tracking-[4px]">
@@ -85,13 +76,13 @@ export default function Hero() {
               <span className="font-display text-3xl sm:text-4xl lg:text-5xl text-white">
                 {COMPANY.yearsExperience}
               </span>
-              <p className="font-body text-sm text-[#999] mt-1">Años de Experiencia</p>
+              <p className="font-body text-sm text-neutral-300 mt-1">Años de Experiencia</p>
             </div>
             <div className="hero-animate">
               <span className="font-display text-3xl sm:text-4xl lg:text-5xl text-white">
                 {COMPANY.monthlyUnits}
               </span>
-              <p className="font-body text-sm text-[#999] mt-1">Unidades Mensuales</p>
+              <p className="font-body text-sm text-neutral-300 mt-1">Unidades Mensuales</p>
             </div>
           </div>
           <a
@@ -103,14 +94,14 @@ export default function Hero() {
         </div>
       </div>
 
-      <div ref={rightRef} className="w-full lg:w-1/2 relative overflow-hidden min-h-[50vh] lg:min-h-screen bg-brand-dark">
+      <div ref={rightRef} className="w-full lg:w-1/2 relative overflow-hidden min-h-[50vh] lg:min-h-screen bg-brand-navy">
         {!imageLoaded && (
           <div 
-            className="absolute inset-0 bg-brand-dark z-10" 
+            className="absolute inset-0 bg-brand-navy z-10" 
             aria-hidden="true"
           >
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-12 h-12 lg:w-16 lg:h-16 border-3 border-brand-yellow/20 border-t-brand-yellow rounded-full animate-spin" />
+              <div className="w-12 h-12 lg:w-16 lg:h-16 border-3 border-brand-secondary/20 border-t-brand-secondary rounded-full animate-spin" />
             </div>
           </div>
         )}
@@ -118,18 +109,14 @@ export default function Hero() {
         {imageError ? (
           <div className="absolute inset-0 bg-bg-gray flex items-center justify-center">
             <div className="text-center p-8">
-              <p className="font-accent text-lg text-[#666]">Imagen no disponible</p>
+              <p className="font-accent text-lg text-neutral-600">Imagen no disponible</p>
             </div>
           </div>
         ) : (
           <img
             src="/images/hero-model.jpg"
             alt="Modelo presentando colección de denim premium 2025"
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
+            className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
             fetchPriority="high"
           />
@@ -141,7 +128,7 @@ export default function Hero() {
         />
         
         <div className="absolute bottom-4 right-4 lg:bottom-8 lg:right-8">
-          <span className="bg-brand-yellow text-brand-dark px-4 py-2 lg:px-5 lg:py-3 font-accent text-xs font-semibold tracking-[1px] uppercase">
+          <span className="bg-neutral-800 text-white px-4 py-2 lg:px-5 lg:py-3 font-accent text-xs font-semibold tracking-[1px] uppercase rounded-full">
             Nueva Colección 2025
           </span>
         </div>

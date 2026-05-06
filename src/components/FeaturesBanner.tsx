@@ -77,13 +77,13 @@ export default function FeaturesBanner() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-brand-dark py-16 lg:py-20">
+    <section ref={sectionRef} className="gradient-mesh py-10 lg:py-20">
       <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6">
           {features.map((feature) => (
             <article 
               key={feature.id} 
-              className="feature-item"
+              className="feature-item rounded-2xl p-4 lg:p-6 bg-white/5 hover:bg-white/10 transition-all duration-300"
               role="region"
               aria-label={feature.title}
             >
@@ -100,26 +100,20 @@ export default function FeaturesBanner() {
                     activeFeature === feature.id ? 'transform -translate-y-1' : ''
                   }`}
                 >
-                  <feature.icon 
-                    className={`w-10 h-10 lg:w-12 lg:h-12 mx-auto lg:mx-0 mb-4 transition-colors duration-300 ${
-                      activeFeature === feature.id ? 'text-brand-yellow' : 'text-brand-yellow'
-                    }`}
-                    strokeWidth={1.5} 
-                    aria-hidden="true"
-                  />
-                  <h3 className="font-display text-xl lg:text-2xl text-white mb-2 text-center lg:text-left">
-                    {feature.title}
-                  </h3>
-                  <p className="font-body text-sm text-[#999] leading-relaxed text-center lg:text-left">
+                  <div className="flex flex-row lg:flex-col items-center lg:items-start gap-3 lg:gap-0 mb-2 lg:mb-3">
+                    <feature.icon 
+                      className="w-8 h-8 lg:w-12 lg:h-12 shrink-0 transition-colors duration-300 text-brand-secondary"
+                      strokeWidth={1.5} 
+                      aria-hidden="true"
+                    />
+                    <h3 className="font-display text-2xl lg:text-xl text-white">
+                      {feature.title}
+                    </h3>
+                  </div>
+                  <p className="font-body text-sm text-neutral-500 leading-relaxed text-center lg:text-left">
                     {feature.description}
                   </p>
                 </div>
-                <div 
-                  className={`absolute inset-0 border-2 border-brand-yellow rounded-lg transition-opacity duration-300 pointer-events-none ${
-                    activeFeature === feature.id ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  aria-hidden="true"
-                />
               </div>
             </article>
           ))}

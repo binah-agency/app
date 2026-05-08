@@ -117,7 +117,7 @@ export default function ProductShowcase() {
               tabIndex={0}
               aria-label={`Ver detalles de ${product.name}`}
             >
-              <div className="relative overflow-hidden aspect-[3/4] mb-4 bg-bg-gray">
+              <div className="relative overflow-hidden aspect-[3/4] mb-4 bg-bg-gray rounded-md">
                 {!loadedImages.has(product.id) && (
                   <div 
                     className="absolute inset-0 skeleton" 
@@ -130,7 +130,7 @@ export default function ProductShowcase() {
                   loading="lazy"
                   onLoad={() => handleImageLoad(product.id)}
                   onError={(e) => handleImageError(e)}
-                  className={`w-full h-full object-cover transition-transform duration-400 group-hover:scale-[1.03] group-focus-within:scale-[1.03] ${
+                  className={`w-full h-full rounded-sm object-cover transition-transform duration-400 group-hover:scale-[1.03] group-focus-within:scale-[1.03] ${
                     loadedImages.has(product.id) ? 'opacity-100' : 'opacity-0'
                   }`}
                 />

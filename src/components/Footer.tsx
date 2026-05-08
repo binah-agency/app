@@ -16,14 +16,14 @@ export default function Footer() {
           <div className="flex gap-6">
             <a 
               href="#" 
-              className="text-[#666] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300"
+              className="text-neutral-600 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300"
               aria-label="Instagram"
             >
               <Instagram size={22} aria-hidden="true" />
             </a>
             <a 
               href="#" 
-              className="text-[#666] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300"
+              className="text-neutral-600 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300"
               aria-label="Facebook"
             >
               <Facebook size={22} aria-hidden="true" />
@@ -32,7 +32,7 @@ export default function Footer() {
               href={CONTACT.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#666] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300"
+              className="text-neutral-600 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300"
               aria-label="WhatsApp"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -44,14 +44,14 @@ export default function Footer() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">
           <div>
-            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-[#666] mb-5 uppercase">
+            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-neutral-600 mb-5 uppercase">
               Tienda
             </h4>
             <ul className="space-y-3">
               {FOOTER_LINKS.shop.map((link) => (
-                <li key={link}>
-                  <a href="#" className="font-body text-[15px] text-[#999] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300">
-                    {link}
+                <li key={link.label}>
+                  <a href={link.href} className="font-body text-[15px] text-neutral-500 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300">
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -59,14 +59,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-[#666] mb-5 uppercase">
+            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-neutral-600 mb-5 uppercase">
               Empresa
             </h4>
             <ul className="space-y-3">
               {FOOTER_LINKS.company.map((link) => (
-                <li key={link}>
-                  <a href="#" className="font-body text-[15px] text-[#999] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300">
-                    {link}
+                <li key={link.label}>
+                  <a href={link.href} className="font-body text-[15px] text-neutral-500 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300">
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -74,14 +74,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-[#666] mb-5 uppercase">
+            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-neutral-600 mb-5 uppercase">
               Soporte
             </h4>
             <ul className="space-y-3">
               {FOOTER_LINKS.support.map((link) => (
-                <li key={link}>
-                  <a href="#" className="font-body text-[15px] text-[#999] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300">
-                    {link}
+                <li key={link.label}>
+                  <a href={link.href} className="font-body text-[15px] text-neutral-500 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300">
+                    {link.label}
                   </a>
                 </li>
               ))}
@@ -89,20 +89,20 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-[#666] mb-5 uppercase">
+            <h4 className="font-accent text-sm font-medium tracking-[1.5px] text-neutral-600 mb-5 uppercase">
               Contacto
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href={`mailto:${CONTACT.email}`} className="font-body text-[15px] text-brand-yellow hover:underline focus:outline-none focus:ring-2 focus:ring-brand-yellow">
+                <a href={`mailto:${CONTACT.email}`} className="font-body text-[15px] text-brand-secondary hover:underline focus:outline-none focus:ring-2 focus:ring-brand-secondary">
                   {CONTACT.email}
                 </a>
               </li>
               <li>
-                <span className="font-body text-[15px] text-[#999]">{CONTACT.phone}</span>
+                <span className="font-body text-[15px] text-neutral-500">{CONTACT.phone}</span>
               </li>
               <li>
-                <span className="font-body text-[15px] text-[#999]">{CONTACT.address}</span>
+                <span className="font-body text-[15px] text-neutral-500">{CONTACT.address}</span>
               </li>
             </ul>
           </div>
@@ -113,21 +113,21 @@ export default function Footer() {
             <div className="flex flex-wrap items-center gap-4">
               <button
                 onClick={scrollToTop}
-                className="flex items-center gap-2 text-[#666] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300"
+                className="flex items-center gap-2 text-neutral-600 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300 rounded-lg p-2"
                 aria-label="Volver arriba"
               >
                 <ArrowUp size={16} aria-hidden="true" />
                 <span className="font-body text-sm">Volver arriba</span>
               </button>
-              <span className="font-body text-[13px] text-[#666]">
+              <span className="font-body text-[13px] text-neutral-600">
                 © 2025 {COMPANY.name}. Todos los derechos reservados.
               </span>
             </div>
             <div className="flex gap-6">
-              <a href="#" className="font-body text-[13px] text-[#666] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300">
+              <a href="#" className="font-body text-[13px] text-neutral-600 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300">
                 Política de Privacidad
               </a>
-              <a href="#" className="font-body text-[13px] text-[#666] hover:text-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-colors duration-300">
+              <a href="#" className="font-body text-[13px] text-neutral-600 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300">
                 Términos de Servicio
               </a>
             </div>

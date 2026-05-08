@@ -45,7 +45,7 @@
   }
 
   body {
-    @apply bg-white text-brand-dark;
+    @apply bg-white text-brand-navy;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -92,27 +92,30 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center bg-brand-yellow text-brand-dark px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] transition-all duration-300;
+    @apply inline-flex items-center justify-center bg-brand-navy700 text-white px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] transition-all duration-300;
+    border-radius: 9999px !important;
   }
 
   .btn-primary:hover {
-    @apply bg-brand-dark text-brand-yellow;
+    @apply bg-brand-navy600 text-white;
   }
 
   .btn-primary:focus {
-    @apply outline-none ring-2 ring-brand-yellow ring-offset-2;
+    @apply outline-none ring-2 ring-brand-accent ring-offset-2;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center bg-transparent border-2 border-brand-dark text-brand-dark px-8 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] transition-all duration-300;
+    @apply inline-flex items-center justify-center bg-transparent border-2 border-brand-navy700 text-brand-navy700 px-8 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] transition-all duration-300;
+    border-radius: 9999px !important;
   }
 
   .btn-secondary:hover {
-    @apply bg-brand-dark text-white;
+    @apply bg-brand-navy700 text-white;
   }
 
   .btn-whatsapp {
     @apply inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-5 py-2.5 font-accent text-[13px] font-medium uppercase tracking-[1px] transition-colors duration-300;
+    border-radius: 9999px !important;
   }
 
   .btn-whatsapp:hover {
@@ -174,4 +177,24 @@
   .no-tap-highlight {
     -webkit-tap-highlight-color: transparent;
   }
+}
+
+/* Gradient Mesh Backgrounds */
+.gradient-mesh {
+  background: 
+    radial-gradient(at 40% 20%, rgba(42, 74, 111, 0.5) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(61, 90, 128, 0.4) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(30, 58, 95, 0.45) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, rgba(42, 74, 111, 0.4) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(61, 90, 128, 0.35) 0px, transparent 50%),
+    linear-gradient(180deg, #0f2744 0%, #0a1628 100%);
+  background-attachment: fixed;
+}
+
+.gradient-mesh-hero {
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(42, 74, 111, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(30, 58, 95, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 80%, rgba(61, 90, 128, 0.25) 0%, transparent 50%),
+    linear-gradient(135deg, #0a1628 0%, #0f2744 50%, #1e3a5f 100%);
 }

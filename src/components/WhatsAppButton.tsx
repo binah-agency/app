@@ -45,7 +45,7 @@ export default function WhatsAppButton() {
         </svg>
       </div>
       <span 
-        className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-brand-dark text-white px-3 py-1.5 rounded text-sm font-accent whitespace-nowrap transition-all duration-300 pointer-events-none ${
+        className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-brand-navy text-white px-3 py-1.5 rounded text-sm font-accent whitespace-nowrap transition-all duration-300 pointer-events-none ${
           isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
         }`}
       >

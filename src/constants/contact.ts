@@ -1,13 +1,15 @@
 export const CONTACT = {
-  phone: '+15552345678',
-  whatsapp: 'https://wa.me/15552345678',
-  email: 'sales@virusjeans.com',
-  address: 'Los Angeles, CA',
+  phone: '+584244210696',
+  whatsapp: 'https://wa.me/584244210696',
+  email: 'ventas@virusjeansca.com',
+  address: 'Calle 93 Niro Cívico, 91-75 Local Lote L-28 Barrio El Terminal, Valencia, Carabobo',
+  rif: 'J-407967207',
+  schedule: '09:00 am – 05:00 pm',
 };
 
 export const COMPANY = {
-  name: 'VIRUS JEANS',
-  tagline: 'PREMIUM DENIM & ACTIVEWEAR',
+  name: 'VIRUS JEANS, C.A.',
+  tagline: 'JEANS Y ROPA AL POR MAYOR',
   yearsExperience: '15+',
   monthlyUnits: '50K+',
   retailPartners: '500+',
@@ -25,9 +27,25 @@ export const NAV_LINKS = [
 export type NavLink = typeof NAV_LINKS[number];
 
 export const FOOTER_LINKS = {
-  shop: ['Hombre', 'Mujer', 'Niños', 'Deportivo', 'Novedades'],
-  company: ['Sobre Nosotros', 'Nuestra Historia', 'Manufactura', 'Carreras'],
-  support: ['Contáctanos', 'Preguntas Frecuentes', 'Información de Envío', 'Política de Devoluciones'],
+  shop: [
+    { label: 'Hombre', href: '#categorias' },
+    { label: 'Mujer', href: '#categorias' },
+    { label: 'Niños', href: '#categorias' },
+    { label: 'Deportivo', href: '#categorias' },
+    { label: 'Novedades', href: '#productos' },
+  ],
+  company: [
+    { label: 'Sobre Nosotros', href: '#hero' },
+    { label: 'Nuestra Historia', href: '#hero' },
+    { label: 'Manufactura', href: '#hero' },
+    { label: 'Carreras', href: '#catalogo' },
+  ],
+  support: [
+    { label: 'Contáctanos', href: '#catalogo' },
+    { label: 'Preguntas Frecuentes', href: '#catalogo' },
+    { label: 'Información de Envío', href: '#catalogo' },
+    { label: 'Política de Devoluciones', href: '#catalogo' },
+  ],
 };
 
 export const SCROLL_THRESHOLD = 0.8;

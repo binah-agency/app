@@ -100,7 +100,7 @@ export default function ParallaxGallery() {
   if (prefersReducedMotion.current) {
     return (
       <section className="bg-bg-light py-16 lg:py-20">
-        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-dark text-center mb-10 lg:mb-12 px-4">
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-navy700 text-center mb-10 lg:mb-12 px-4">
           NUESTRAS COLECCIONES
         </h2>
         <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 px-6">
@@ -122,7 +122,7 @@ export default function ParallaxGallery() {
     <section className="bg-bg-light py-16 lg:py-20 overflow-hidden">
       <h2
         ref={titleRef}
-        className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-dark text-center mb-10 lg:mb-12 px-4"
+        className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-navy700 text-center mb-10 lg:mb-12 px-4"
       >
         NUESTRAS COLECCIONES
       </h2>

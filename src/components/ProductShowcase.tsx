@@ -107,11 +107,11 @@ export default function ProductShowcase() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="lg:bg-gray-100 p-2 lg:p-8 rounded-2xl grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-8">
           {products.map((product) => (
             <article 
               key={product.id} 
-              className="product-card group rounded-md lg:cursor-default"
+              className="bg-gray-50 pb-6 product-card group rounded-md lg:cursor-default"
               onClick={() => setSelectedProduct(product)}
               role="button"
               tabIndex={0}
@@ -136,7 +136,7 @@ export default function ProductShowcase() {
                 />
                 {product.isNew && (
                   <span 
-                    className="absolute top-3 left-3 bg-neutral-800 text-white px-3 py-1 font-accent text-[11px] font-semibold uppercase tracking-[1px] rounded-full"
+                    className="absolute top-3 left-3 bg-yellow-300 text-brand-navy px-3 py-1 font-accent text-[11px] font-semibold uppercase tracking-[1px] rounded-full"
                     aria-label="Nuevo producto"
                   >
                     NUEVO
@@ -144,12 +144,13 @@ export default function ProductShowcase() {
                 )}
                 <button
                   type="button"
-                  className="absolute bottom-0 left-0 right-0 bg-brand-navy text-white py-3 font-accent text-[13px] font-medium uppercase text-center translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 group-active:translate-y-0 transition-transform duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-inset touch-manipulation no-tap-highlight rounded-b-2xl"
+                  className="absolute bottom-0 left-0 right-0 bg-brand-navy text-white py-3 font-accent text-[13px] font-medium uppercase text-center translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 group-active:translate-y-0 transition-transform duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-inset touch-manipulation no-tap-highlight rounded-tl-[0.5rem] rounded-tr-[0.5rem] px-1"
                   aria-label={`Agregar ${product.name} a cotización`}
                 >
                   Agregar a Cotización
                 </button>
               </div>
+              <div className="m-4">
               <h3 
                 id={`product-${product.id}-name`}
                 className="font-display text-lg lg:text-xl xl:text-2xl text-brand-navy700"
@@ -158,6 +159,7 @@ export default function ProductShowcase() {
               </h3>
               <p className="font-body text-sm lg:text-base font-semibold text-brand-navy700">{product.price}</p>
               <p className="font-body text-sm text-text-muted">{product.minOrder}</p>
+              </div>
             </article>
           ))}
         </div>

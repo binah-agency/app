@@ -19,7 +19,7 @@ const galleryImages = [
   '/images/gallery-8.jpg',
 ];
 
-const rowImages = [...galleryImages, ...galleryImages];
+const rowImages = [...galleryImages, ...galleryImages, ...galleryImages];
 
 const checkReducedMotion = (): boolean => {
   if (typeof window === 'undefined') return false;
@@ -37,7 +37,8 @@ function GalleryRow({ images, direction, speed }: GalleryRowProps) {
     if (!row) return;
 
     const xPercent = direction === 'left' ? speed : -speed;
-
+    //modifica el punto de partida en x
+    //si es left, el punto de partida es speed, si es right, el punto de partida es -speed
     const tween = gsap.to(row, {
       xPercent,
       ease: 'none',
@@ -80,9 +81,10 @@ export default function ParallaxGallery() {
       titleRef.current,
       { y: 30, opacity: 0 },
       {
+        x: 0,
         y: 0,
         opacity: 1,
-        duration: 0.7,
+        duration: 0.3,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: titleRef.current,
@@ -128,15 +130,15 @@ export default function ParallaxGallery() {
       </h2>
 
       <div className="gallery-wrapper flex flex-col gap-2" aria-hidden="true">
-        <GalleryRow images={rowImages} direction="right" speed={35} />
-        <GalleryRow images={[...rowImages].reverse()} direction="left" speed={45} />
+        <GalleryRow images={rowImages} direction="right" speed={15} />
+        <GalleryRow images={[...rowImages].reverse()} direction="left" speed={15} />
 
         <div className="overflow-hidden py-4" aria-hidden="true">
           <div className="flex whitespace-nowrap">
             {Array.from({ length: 8 }).map((_, i) => (
               <span
                 key={i}
-                className="font-display text-7xl sm:text-8xl lg:text-[120px] text-bg-gray mx-4 select-none flex-shrink-0"
+                className="font-display text-7xl sm:text-8xl lg:text-[120px] text-brand-navy700 mx-4 select-none flex-shrink-0"
               >
                 VIRUS
               </span>
@@ -144,15 +146,15 @@ export default function ParallaxGallery() {
           </div>
         </div>
 
-        <GalleryRow images={rowImages.slice(2).concat(rowImages.slice(0, 2))} direction="right" speed={25} />
-        <GalleryRow images={[...rowImages].reverse().slice(3).concat([...rowImages].reverse().slice(0, 3))} direction="left" speed={40} />
+        <GalleryRow images={rowImages.slice(2).concat(rowImages.slice(0, 2))} direction="right" speed={15} />
+        <GalleryRow images={[...rowImages].reverse().slice(3).concat([...rowImages].reverse().slice(0, 3))} direction="left" speed={5} />
 
         <div className="overflow-hidden py-4" aria-hidden="true">
           <div className="flex whitespace-nowrap">
             {Array.from({ length: 8 }).map((_, i) => (
               <span
                 key={i}
-                className="font-display text-7xl sm:text-8xl lg:text-[120px] text-bg-gray mx-4 select-none flex-shrink-0"
+                className="font-display text-7xl sm:text-8xl lg:text-[120px] text-brand-navy700 mx-4 select-none flex-shrink-0"
               >
                 JEANS
               </span>
@@ -160,8 +162,8 @@ export default function ParallaxGallery() {
           </div>
         </div>
 
-        <GalleryRow images={rowImages.slice(4).concat(rowImages.slice(0, 4))} direction="right" speed={30} />
-        <GalleryRow images={[...rowImages].reverse().slice(1).concat([...rowImages].reverse().slice(0, 1))} direction="left" speed={35} />
+        <GalleryRow images={rowImages.slice(4).concat(rowImages.slice(0, 4))} direction="right" speed={10} />
+        <GalleryRow images={[...rowImages].reverse().slice(1).concat([...rowImages].reverse().slice(0, 1))} direction="left" speed={5} />
       </div>
     </section>
   );

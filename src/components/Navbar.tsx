@@ -8,7 +8,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight * SCROLL_THRESHOLD);
+      const heroHeight = window.innerHeight;
+      setScrolled(window.scrollY > heroHeight * SCROLL_THRESHOLD);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -38,10 +39,10 @@ export default function Navbar() {
         Saltar al contenido principal
       </a>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-400 ${
+        className={`fixed top-0 left-0 right-0 z-[60] h-16 transition-all duration-400 ${
           scrolled
             ? 'bg-white/95 backdrop-blur-xl shadow-sm'
-            : 'bg-transparent'
+            : 'bg-brand-navy backdrop-blur-md'
         }`}
         role="navigation"
         aria-label="Navegación principal"
@@ -49,11 +50,37 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto h-full flex items-center justify-between px-6 lg:px-8">
           <a
             href="#"
-            className={`font-display text-2xl tracking-[3px] transition-colors duration-400 focus:outline-none focus:ring-2 focus:ring-brand-secondary rounded-md ${
+            className={`flex items-center gap-3 transition-colors duration-400 focus:outline-none focus:ring-2 focus:ring-brand-secondary rounded-md ${
               scrolled ? 'text-brand-navy700' : 'text-white'
             }`}
           >
-            VIRUS JEANS
+            <svg
+              viewBox="0 0 541 541"
+              className={`h-10 w-auto ${scrolled ? 'text-brand-navyLight' : 'text-white'}`}
+              aria-label="Virus Jeans Logo"
+            >
+              <polygon
+                fill="currentColor"
+                points="280.21 71.91 519.73 71.9 268.54 500.48 175.53 337.65 228.45 244.76 231.12 245.57 271.13 313.37 355.31 165.78 280.21 165.78 280.21 71.91"
+              />
+              <path
+                fill="currentColor"
+                d="M263.38,93.27l-201.97-1.29,116.29,204.25c1.51,5.98-9.99,18.83-12.06,24.9L21.27,69.97h240.17l1.94,1.94v21.36Z"
+              />
+              <path
+                fill="currentColor"
+                d="M263.38,104.92v24.6H123.55l74.88,131.75c.68,1.54.07,2.71-.44,4.13-.58,1.63-11.86,20.21-12.94,20.78L82.13,103.64l181.26,1.29Z"
+              />
+              <path
+                fill="currentColor"
+                d="M263.38,142.47v23.3h-74.45c-.39,0-1.81-1.8-3.23-1.29l33.7,61.59-13.64,23.84-61.49-108.73,119.11,1.29Z"
+              />
+            </svg>
+            <span className={`font-display text-2xl tracking-[3px] ${
+              scrolled ? 'text-brand-navy700' : 'text-white'
+            }`}>
+              VIRUS JEANS
+            </span>
           </a>
 
           <div className="hidden lg:flex items-center gap-8">

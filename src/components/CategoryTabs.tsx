@@ -218,7 +218,7 @@ export default function CategoryTabs() {
         <div className="text-center mt-10 lg:mt-12">
           <a
             href="#catalogo"
-            className="btn-primary"
+            className="inline-flex items-center justify-center bg-white text-brand-navy px-8 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] transition-all duration-300 hover:scale-[1.02] rounded-full border-2 border-brand-navy"
           >
             Ver Todas las Categorías
           </a>

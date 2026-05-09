@@ -206,7 +206,7 @@ export default function CategoryTabs() {
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
-                  className="w-full aspect-[3/4] object-cover transition-transform duration-400 group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
+                  className="w-full aspect-[3/4] object-cover transition-transform duration-400 group-hover:scale-105 group-focus-within:scale-105"
                 />
               </div>
               <h3 className="px-4 font-display text-xl lg:text-2xl text-white">{item.title}</h3>

@@ -150,8 +150,8 @@
       transform: translateY(0);
     }
     
-    .group-hover\:scale-[1.03] {
-      transform: scale(1.03);
+    .group-hover\:scale-105 {
+      transform: scale(1.05);
     }
   }
 }

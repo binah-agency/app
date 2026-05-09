@@ -130,7 +130,7 @@ export default function ProductShowcase() {
                   loading="lazy"
                   onLoad={() => handleImageLoad(product.id)}
                   onError={(e) => handleImageError(e)}
-                  className={`w-full h-full rounded-sm object-cover transition-transform duration-400 group-hover:scale-[1.03] group-focus-within:scale-[1.03] ${
+                  className={`w-full h-full rounded-sm object-cover transition-transform duration-400 group-hover:scale-105 group-focus-within:scale-105 ${
                     loadedImages.has(product.id) ? 'opacity-100' : 'opacity-0'
                   }`}
                 />

@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import OurBrands from '../components/OurBrands';
 import ParallaxGallery from '../components/ParallaxGallery';
 import CategoryTabs from '../components/CategoryTabs';
 import FeaturesBanner from '../components/FeaturesBanner';
@@ -14,6 +15,7 @@ import Footer from '../components/Footer';
 import ExitIntentModal from '../components/ExitIntentModal';
 import NewsletterModal from '../components/NewsletterModal';
 import QuickContactModal from '../components/QuickContactModal';
+import WelcomeModal from '../components/WelcomeModal';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -77,6 +79,7 @@ export function Home() {
       <Navbar />
       <main id="main-content" ref={mainRef}>
         <Hero />
+        <OurBrands />
         <ParallaxGallery />
         <CategoryTabs />
         <FeaturesBanner />
@@ -90,6 +93,7 @@ export function Home() {
         <NewsletterModal />
       </ExitIntentModal>
       <QuickContactModal />
+      <WelcomeModal />
     </div>
   );
 }

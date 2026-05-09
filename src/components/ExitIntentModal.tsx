@@ -77,7 +77,7 @@ export default function ExitIntentModal({ children }: ExitIntentModalProps) {
             </p>
 
             <a
-              href="https://wa.me/15552345678"
+              href="https://wa.me/584120410493"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 w-full bg-[#25D366] text-white py-4 px-6 rounded-xl font-accent text-sm font-medium uppercase tracking-[1px] hover:bg-[#128C7E] transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl"

@@ -4,25 +4,41 @@
 
 @layer base {
   :root {
+    /* Colores Semánticos Estratégicos */
+    /* Primary: Amarillo - Acciones principales (CTA, comprar, contact) */
+    --primary: 45 95% 50%;
+    --primary-foreground: 210 40% 10%;
+    
+    /* Secondary: Azul/Negro - Acciones secundarias (ver más, detalles) */
+    --secondary: 215 40% 15%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Success: Verde - Confirmaciones, éxito */
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Warning: Naranja - Urgencia, ofertas */
+    --warning: 35 90% 55%;
+    --warning-foreground: 210 40% 10%;
+    
+    /* Danger: Rojo - Peligro, eliminar, errores */
+    --danger: 0 80% 55%;
+    --danger-foreground: 0 0% 100%;
+    
+    /* Neutral: Colores base */
     --background: 0 0% 100%;
     --foreground: 0 0% 7%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 7%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 7%;
-    --primary: 60 100% 50%;
-    --primary-foreground: 0 0% 7%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 40%;
-    --accent: 60 100% 50%;
-    --accent-foreground: 0 0% 7%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --accent: 45 95% 50%;
+    --accent-foreground: 210 40% 10%;
     --border: 0 0% 84%;
     --input: 0 0% 84%;
-    --ring: 60 100% 50%;
+    --ring: 45 95% 50%;
     --radius: 0rem;
   }
 
@@ -92,8 +108,48 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center bg-brand-navy700 text-white px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] transition-all duration-300;
+    @apply inline-flex items-center justify-center bg-brand-secondary text-brand-navy700 px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] transition-all duration-300;
     border-radius: 9999px !important;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-yellow-400 scale-[1.02];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center bg-brand-navy700 text-white px-8 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] transition-all duration-300;
+    border-radius: 9999px !important;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-brand-navy600 scale-[1.02];
+  }
+
+  .btn-success {
+    @apply inline-flex items-center justify-center bg-green-600 text-white px-6 py-3 font-accent text-sm font-medium uppercase tracking-[1px] transition-all duration-300;
+    border-radius: 9999px !important;
+  }
+
+  .btn-success:hover {
+    @apply bg-green-500;
+  }
+
+  .btn-warning {
+    @apply inline-flex items-center justify-center bg-orange-500 text-white px-6 py-3 font-accent text-sm font-medium uppercase tracking-[1px] transition-all duration-300;
+    border-radius: 9999px !important;
+  }
+
+  .btn-warning:hover {
+    @apply bg-orange-400;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center bg-red-600 text-white px-6 py-3 font-accent text-sm font-medium uppercase tracking-[1px] transition-all duration-300;
+    border-radius: 9999px !important;
+  }
+
+  .btn-danger:hover {
+    @apply bg-red-500;
   }
 
   .btn-primary:hover {
@@ -192,6 +248,7 @@
 }
 
 .gradient-mesh-hero {
+  background-color: #0a1628;
   background: 
     radial-gradient(ellipse 80% 50% at 20% 40%, rgba(42, 74, 111, 0.5) 0%, transparent 60%),
     radial-gradient(ellipse 60% 40% at 80% 60%, rgba(30, 58, 95, 0.4) 0%, transparent 50%),

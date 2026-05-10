@@ -1,12 +1,12 @@
 export const CONTACT = {
-  phone: '+584120410493',
-  whatsapp: 'https://wa.me/584120410493',
+  phone: '+584244210696',
+  whatsapp: 'https://wa.me/584244210696',
   email: 'ventas@virusjeansca.com',
-  address: 'Mercado Los Guajiros, Sector Entrance, Valencia, Carabobo, Venezuela',
+  address: 'Calle 93 Niro Cívico, 91-75 Local Lote L-28 Barrio El Terminal, Valencia, Carabobo, Venezuela',
   secondaryAddress: 'Centro de Mayoristas del Área del Cementerio, Edificio Merposur, Pasillo Canguro, Caracas',
-  phones: ['04120410493', '04244401152', '04244091422', '04145944101'],
+  phones: ['0424210696', '04244401152', '04244091422', '04145944101'],
   rif: 'J-407967207',
-  schedule: '07:00 am – 06:00 pm',
+  schedule: '09:00 am – 05:00 pm',
 };
 
 export const COMPANY = {

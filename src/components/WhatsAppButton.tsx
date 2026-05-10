@@ -29,11 +29,11 @@ export default function WhatsAppButton() {
       aria-label="Contactar por WhatsApp"
     >
       <div 
-        className="bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 transition-colors duration-300"
+        className="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 transition-colors duration-300 flex items-center justify-center"
       >
         <svg 
-          width="28" 
-          height="28" 
+          width="24" 
+          height="24" 
           viewBox="0 0 24 24" 
           fill="currentColor"
           className="transition-transform duration-300"

@@ -144,7 +144,7 @@ export default function FlashDeals() {
                   </span>
                 </div>
                 <a
-                  href={CONTACT.whatsapp}
+                  href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi las ofertas relámpago de la página y me interesa el producto ' + (deal?.title || '') + '. ¿Está disponible ahora y cómo puedo reservarlo?')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full bg-brand-secondary text-brand-navy text-center py-2.5 rounded-lg font-accent text-sm font-medium hover:bg-yellow-400 transition-colors"
@@ -161,7 +161,7 @@ export default function FlashDeals() {
             *Stock limitado. Precios sujetos a disponibilidad.
           </p>
           <a
-            href={CONTACT.whatsapp}
+            href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Quiero ver todas las ofertas flash de la página. ¿Tienen más productos en promoción que no aparecen en la web?')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-brand-secondary font-accent text-sm font-medium hover:underline"

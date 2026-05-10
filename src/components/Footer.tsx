@@ -30,7 +30,7 @@ export default function Footer() {
                 <Facebook size={22} aria-hidden="true" />
               </a>
               <a
-                href={CONTACT.whatsapp}
+                href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi el pie de página de la web y me gustaría contactarlos. ¿Pueden orientarme sobre cómo hacer un pedido?')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-secondary hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300"
@@ -128,10 +128,10 @@ export default function Footer() {
       </footer>
       <button
         onClick={scrollToTop}
-        className="fixed bottom-36 right-6 z-50 flex items-center justify-center w-12 h-12 bg-brand-navy text-white hover:bg-brand-navyLight rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-all duration-300"
+        className="fixed bottom-24 right-4 z-50 flex items-center justify-center w-14 h-14 bg-[#FF6B35] text-white hover:bg-[#e85a28] rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-all duration-300"
         aria-label="Volver arriba"
       >
-        <ArrowUp size={20} aria-hidden="true" />
+        <ArrowUp size={22} aria-hidden="true" />
       </button>
     </>
   );

@@ -1,12 +1,27 @@
 import { useState, useEffect } from 'react';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { X, Send, MessageCircle } from 'lucide-react';
+import { CONTACT } from '../constants/contact';
 
 const PRESET_MESSAGES = [
-  "Hola, me interesa conocer el catálogo de jeans",
-  "Quiero información sobre precios por mayoreo",
-  "¿Tienen disponible cierta referencia?",
+  "Hola, estoy viendo la página y me interesa mucho el catálogo de jeans que tienen",
+  "Hola, me gustaría conocer los precios por mayoreo para empezar a trabajar con ustedes",
+  "Hola, vi algunos modelos que me gustaron mucho, ¿tienen disponibilidad ahora?",
   "Otro motivo (escribir)",
 ];
+
+const getHumanizedMessage = (message: string): string => {
+  const intro = "¡Hola! Estoy visitando la página de Virus Jeans y me gustaría ";
+  
+  if (message.includes("catálogo")) {
+    return intro + "ver el catálogo completo de jeans que tienen disponible. ¿Me podrían mostrar las opciones que tienen?";
+  } else if (message.includes("precios")) {
+    return intro + "información sobre los precios por mayoreo. ¿Cuántas piezas necesito comprar y cuáles son los descuentos por volumen?";
+  } else if (message.includes("disponibilidad")) {
+    return intro + "saber si tienen disponibles algunos modelos que vi en la página. ¿Pueden confirmarme el stock?";
+  } else {
+    return intro + "contactarlos para resolver una consulta: " + message;
+  }
+};
 
 export default function QuickContactModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,13 +36,25 @@ export default function QuickContactModal() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const handleSend = () => {
     const message = selectedPreset === "Otro motivo (escribir)" 
       ? customMessage 
       : selectedPreset;
     
     if (message) {
-      const whatsappUrl = `https://wa.me/15552345678?text=${encodeURIComponent(message || 'Hola, necesito información')}`;
+      const finalMessage = getHumanizedMessage(message);
+      const whatsappUrl = `${CONTACT.whatsapp}?text=${encodeURIComponent(finalMessage)}`;
       window.open(whatsappUrl, '_blank');
       setIsOpen(false);
       setCustomMessage('');
@@ -38,30 +65,36 @@ export default function QuickContactModal() {
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all duration-300 hover:scale-110 animate-bounce"
-        aria-label="Abrir chat de WhatsApp"
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-4 right-4 z-[100] w-14 h-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center widget-pulse"
+        style={{ backgroundColor: '#25D366' }}
+        aria-label={isOpen ? "Cerrar chat" : "Abrir chat de WhatsApp"}
       >
-        <MessageCircle size={28} />
+        {isOpen ? <X size={24} className="text-white" /> : <MessageCircle size={28} className="text-white" />}
       </button>
 
       {isOpen && (
         <div 
-          className="fixed bottom-24 right-6 z-[80] w-80 lg:w-96 bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 sm:w-96 md:w-[28rem] lg:w-[32rem] bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300 z-[110]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="quick-contact-title"
         >
-          <div className="bg-[#25D366] p-4 flex items-center justify-between">
+          <div className="bg-brand-navy p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                <MessageCircle className="text-white w-5 h-5" />
+              <div className="w-10 h-10 flex items-center justify-center">
+                <svg viewBox="0 0 541 541" className="w-8 h-8 text-white" aria-label="Virus Jeans Logo">
+                  <polygon fill="currentColor" points="280.21 71.91 519.73 71.9 268.54 500.48 175.53 337.65 228.45 244.76 231.12 245.57 271.13 313.37 355.31 165.78 280.21 165.78 280.21 71.91" />
+                  <path fill="currentColor" d="M263.38,93.27l-201.97-1.29,116.29,204.25c1.51,5.98-9.99,18.83-12.06,24.9L21.27,69.97h240.17l1.94,1.94v21.36Z" />
+                  <path fill="currentColor" d="M263.38,104.92v24.6H123.55l74.88,131.75c.68,1.54.07,2.71-.44,4.13-.58,1.63-11.86,20.21-12.94,20.78L82.13,103.64l181.26,1.29Z" />
+                  <path fill="currentColor" d="M263.38,142.47v23.3h-74.45c-.39,0-1.81-1.8-3.23-1.29l33.7,61.59-13.64,23.84-61.49-108.73,119.11,1.29Z" />
+                </svg>
               </div>
               <div>
                 <h3 id="quick-contact-title" className="font-accent text-white font-semibold">
                   Virus Jeans
                 </h3>
-                <p className="text-white/80 text-xs">En línea ahora</p>
+                <p className="text-white/80 text-xs">Escríbenos por WhatsApp</p>
               </div>
             </div>
             <button
@@ -111,7 +144,7 @@ export default function QuickContactModal() {
             <button
               onClick={handleSend}
               disabled={!selectedPreset || (selectedPreset === "Otro motivo (escribir)" && !customMessage)}
-              className="w-full bg-[#25D366] text-white py-3 px-4 rounded-xl font-accent text-sm font-medium flex items-center justify-center gap-2 hover:bg-[#128C7E] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full bg-brand-navy text-white py-3 px-4 rounded-xl font-accent text-sm font-medium flex items-center justify-center gap-2 hover:bg-brand-navyLight disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <Send size={18} />
               Enviar mensaje

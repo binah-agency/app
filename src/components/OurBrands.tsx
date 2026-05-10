@@ -47,7 +47,7 @@ export default function OurBrands({ id }: OurBrandsProps) {
 
       <div className="relative overflow-hidden">
         <div 
-          className={`flex gap-6 lg:gap-8 py-6 items-center transition-all duration-1000 ${isLoaded ? 'animate-scroll' : ''}`}
+          className={`flex gap-8 lg:gap-12 py-8 items-center transition-all duration-1000 ${isLoaded ? 'animate-scroll' : ''}`}
           style={{
             width: 'max-content',
           }}
@@ -55,12 +55,12 @@ export default function OurBrands({ id }: OurBrandsProps) {
           {allBrands.map((brand, index) => (
             <div 
               key={`${brand.id}-${index}`}
-              className="flex-shrink-0 flex items-center justify-center"
+              className="flex-shrink-0 flex items-center justify-center min-w-[100px] lg:min-w-[140px] px-4"
             >
               <img 
                 src={brand.logo} 
                 alt={brand.name}
-                className="h-12 lg:h-16 w-auto object-contain"
+                className="h-14 lg:h-20 w-auto object-contain max-w-[120px] lg:max-w-[160px]"
               />
             </div>
           ))}

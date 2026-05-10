@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag, Users, Package, Sparkles, ArrowRight } from 'lucide-react';
 import { NAV_LINKS, CONTACT, SCROLL_THRESHOLD } from '../constants/contact';
+
+const menuIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  'HOMBRE': ShoppingBag,
+  'MUJER': ShoppingBag,
+  'NIÑOS': Users,
+  'DEPORTIVO': Package,
+  'NOVEDADES': Sparkles,
+  'CATÁLOGO': ArrowRight,
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -84,28 +93,32 @@ export default function Navbar() {
           </a>
 
           <div className="hidden lg:flex items-center gap-8">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`font-accent text-sm font-medium tracking-[1.5px] uppercase relative group transition-colors duration-400 focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:ring-offset-2 rounded-md ${
-                  scrolled ? 'text-brand-navy700' : 'text-white'
-                }`}
-              >
-                {link.label}
-                <span
-                  className={`absolute left-0 -bottom-1 h-[2px] w-0 group-hover:w-full group-focus:w-full transition-all duration-300 ${
-                    scrolled ? 'bg-brand-navy' : 'bg-white'
+            {NAV_LINKS.map((link) => {
+              const IconComponent = menuIcons[link.label];
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => handleLinkClick()}
+                  className={`font-accent text-sm font-medium tracking-[1.5px] uppercase relative group transition-colors duration-400 focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:ring-offset-2 rounded-md flex items-center gap-2 ${
+                    scrolled ? 'text-brand-navy700' : 'text-white'
                   }`}
-                  aria-hidden="true"
-                />
-              </a>
-            ))}
+                >
+                  {IconComponent && <IconComponent className="w-4 h-4" />}
+                  {link.label}
+                  <span
+                    className={`absolute left-0 -bottom-1 h-[2px] w-0 group-hover:w-full group-focus:w-full transition-all duration-300 ${
+                      scrolled ? 'bg-brand-navy' : 'bg-white'
+                    }`}
+                    aria-hidden="true"
+                  />
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-4">
             <a
-              href={CONTACT.whatsapp}
+              href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi el menú de la página y me gustaría contactarlos. ¿Me pueden ayudar?')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 bg-[#25D366] text-white px-5 py-2.5 font-accent text-[13px] font-medium uppercase tracking-[1px] hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 transition-colors duration-300 rounded-md"
@@ -152,22 +165,25 @@ export default function Navbar() {
               </button>
             </div>
             <div className="flex flex-col items-start px-8 py-6 gap-6">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={handleLinkClick}
-                  className="font-accent text-lg font-medium tracking-[2px] uppercase text-brand-navy700 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary py-2 rounded-md transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const IconComponent = menuIcons[link.label];
+                return (
+                  <button
+                    key={link.label}
+                    onClick={() => handleLinkClick()}
+                    className="font-accent text-lg font-medium tracking-[2px] uppercase text-brand-navy700 hover:text-brand-secondary focus:outline-none focus:ring-2 focus:ring-brand-secondary py-2 rounded-md transition-colors flex items-center gap-3"
+                  >
+                    {IconComponent && <IconComponent className="w-5 h-5" />}
+                    {link.label}
+                  </button>
+                );
+              })}
               <div className="w-full border-t border-border-custom my-2" />
               <a
-                href={CONTACT.whatsapp}
+                href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Estoy viendo la página desde mi celular y me gustaría contactarlos. ¿Me pueden ayudar?')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={handleLinkClick}
+                onClick={() => handleLinkClick()}
                 className="flex items-center gap-3 bg-[#25D366] text-white px-6 py-3 font-accent text-sm font-medium uppercase tracking-[1px] mt-2 hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 transition-colors rounded-md"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

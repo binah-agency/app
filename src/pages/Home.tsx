@@ -99,9 +99,9 @@ export function Home() {
           <ParallaxGallery id="colecciones" />
           <CategoryTabs initialCategory={activeCategory} onCategoryChange={setActiveCategory} />
           <FeaturesBanner id="features" />
-          <AboutSection id="nosotros" />
           <div className="h-px bg-gradient-to-r from-transparent via-brand-secondary/30 to-transparent" />
           <ProductShowcase id="productos" />
+          <AboutSection id="nosotros" />
           <Testimonials id="testimonios" />
           <CTASection id="catalogo" />
           <FAQSection id="faq" />

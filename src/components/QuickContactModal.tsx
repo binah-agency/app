@@ -21,6 +21,17 @@ export default function QuickContactModal() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const handleSend = () => {
     const message = selectedPreset === "Otro motivo (escribir)" 
       ? customMessage 
@@ -38,11 +49,11 @@ export default function QuickContactModal() {
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-4 right-4 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all duration-300 hover:scale-110 flex items-center justify-center"
-        aria-label="Abrir chat de WhatsApp"
+        aria-label={isOpen ? "Cerrar chat" : "Abrir chat de WhatsApp"}
       >
-        <MessageCircle size={26} />
+        {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
       </button>
 
       {isOpen && (

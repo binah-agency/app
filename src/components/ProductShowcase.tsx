@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X } from 'lucide-react';
+import ProductModal from './ProductModal';
 
 interface ProductShowcaseProps {
   id?: string;
@@ -183,57 +183,16 @@ export default function ProductShowcase({ id }: ProductShowcaseProps) {
       </div>
 
       {selectedProduct && (
-        <div 
-          className="fixed inset-0 z-[90] flex items-center justify-center p-4 lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Detalles de ${selectedProduct.name}`}
-        >
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={() => setSelectedProduct(null)}
-          />
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 animate-in fade-in zoom-in-95 duration-300">
-            <button
-              onClick={() => setSelectedProduct(null)}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-              aria-label="Cerrar"
-            >
-              <X size={20} />
-            </button>
-            
-            <img
-              src={selectedProduct.image}
-              alt={selectedProduct.name}
-              className="w-full aspect-[3/4] object-cover rounded-xl mb-4"
-            />
-            
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-display text-2xl text-brand-navy">
-                {selectedProduct.name}
-              </h3>
-              {selectedProduct.isNew && (
-                <span className="bg-brand-secondary text-brand-navy px-2 py-0.5 font-accent text-[10px] font-semibold uppercase tracking-[1px] rounded-full">
-                  NUEVO
-                </span>
-              )}
-            </div>
-            <p className="font-body text-lg font-semibold text-brand-navy mb-1">
-              {selectedProduct.price}
-            </p>
-            <p className="font-body text-sm text-text-muted mb-4">
-              {selectedProduct.minOrder}
-            </p>
-            
-            <a
-              href="#catalogo"
-              onClick={() => setSelectedProduct(null)}
-              className="btn-primary w-full text-center block"
-            >
-              Agregar a Cotización
-            </a>
-          </div>
-        </div>
+        <ProductModal
+          isOpen={!!selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          image={selectedProduct.image}
+          title={selectedProduct.name}
+          price={selectedProduct.price}
+          minOrder={selectedProduct.minOrder}
+          badge={selectedProduct.isNew ? 'NUEVO' : undefined}
+          ctaText="Agregar a Cotización"
+        />
       )}
     </section>
   );

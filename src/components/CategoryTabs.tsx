@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import ProductModal from './ProductModal';
 
 interface CategoryItem {
   title: string;
@@ -239,47 +240,13 @@ export default function CategoryTabs({ initialCategory, onCategoryChange, id }: 
       </div>
 
       {selectedCategory && (
-        <div 
-          className="fixed inset-0 z-[90] flex items-center justify-center p-4 lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Detalles de ${selectedCategory.title}`}
-        >
-          <div 
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={() => setSelectedCategory(null)}
-          />
-          <div className="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 animate-in fade-in zoom-in-95 duration-300">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
-              aria-label="Cerrar"
-            >
-              <X size={20} />
-            </button>
-            
-            <img
-              src={selectedCategory.image}
-              alt={selectedCategory.title}
-              className="w-full aspect-[3/4] object-cover rounded-xl mb-4"
-            />
-            
-            <h3 className="font-display text-2xl text-brand-navy mb-2">
-              {selectedCategory.title}
-            </h3>
-            <p className="font-body text-text-muted mb-4">
-              {selectedCategory.subtitle}
-            </p>
-            
-            <a
-              href="#catalogo"
-              onClick={() => setSelectedCategory(null)}
-              className="btn-primary w-full text-center block"
-            >
-              Ver Catálogo
-            </a>
-          </div>
-        </div>
+        <ProductModal
+          isOpen={!!selectedCategory}
+          onClose={() => setSelectedCategory(null)}
+          image={selectedCategory.image}
+          title={selectedCategory.title}
+          subtitle={selectedCategory.subtitle}
+        />
       )}
     </section>
   );

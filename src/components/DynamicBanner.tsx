@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
 interface BannerConfig {
@@ -77,7 +77,6 @@ export default function DynamicBanner() {
   const [activeBanner, setActiveBanner] = useState<BannerConfig | null>(null);
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const cooldownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const COOLDOWN_MS = 180000;
 

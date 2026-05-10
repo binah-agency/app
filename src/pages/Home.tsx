@@ -13,7 +13,6 @@ import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
 import FAQSection from '../components/FAQSection';
 import DynamicBanner from '../components/DynamicBanner';
-import WhatsAppButton from '../components/WhatsAppButton';
 import Footer from '../components/Footer';
 import ExitIntentModal from '../components/ExitIntentModal';
 import NewsletterModal from '../components/NewsletterModal';
@@ -94,7 +93,6 @@ export function Home() {
         <CTASection />
         <FAQSection />
       </main>
-      <WhatsAppButton />
       <Footer />
       <ExitIntentModal>
         <NewsletterModal />

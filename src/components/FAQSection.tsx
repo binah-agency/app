@@ -13,35 +13,51 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: '¿Cuál es la compra mínima?',
-    answer: 'La compra mínima es de 6 piezas por pedido, lo que te permite diversificar tu inventario sin comprometer demasiado capital.',
+    answer: 'La compra mínima es de 6 piezas por estilo. Para mejores precios, el pedido completo debe ser de 24+ unidades. Esto te permite diversificar tu inventario sin comprometer demasiado capital.',
+  },
+  {
+    question: '¿Cuánto cuestan los envíos?',
+    answer: 'El envío tiene un costo adicional según la agencia y destino. Envíos gratis en pedidos mayores a $500. Para Caracas y ciudades principales el costo varía entre $3-5, zonas remotas $8-12.',
   },
   {
     question: '¿Hacen envíos a todo el país?',
-    answer: 'Sí, despachamos a todas las ciudades de Venezuela a través de agencias de mensajería confiables con seguimiento de envío.',
+    answer: 'Sí, despachamos a todas las ciudades de Venezuela a través de las principales agencias de mensajería: Zoom, Domesa, Tealca y MRW. Todos los envíos incluyen número de seguimiento.',
   },
   {
     question: '¿Cuáles son los tiempos de entrega?',
-    answer: 'Los tiempos de entrega varían según la ciudad: Caracas 24-48 horas, ciudades principales 3-5 días, zonas remotas 7-10 días.',
+    answer: 'Caracas y Vargas: 24-48 horas | Ciudades principales (Maracaibo, Valencia, Barquisimeto, Mérida): 3-5 días laborables | Zonas remotas: 7-10 días laborables.',
+  },
+  {
+    question: '¿Qué métodos de pago aceptan?',
+    answer: 'Aceptamos: Transferencia bancaria (Banesco, Mercantil, Provincial), Pago móvil (mismo banco), Zelle, y efectivo solo en tienda física en Valencia. Para primeros pedidos recomendamos transferencia.',
   },
   {
     question: '¿Ofrecen precios de mayoreo?',
-    answer: 'Sí, manejamos precios preferenciales por volumen. A mayor cantidad, mejores márgenes. Solicita nuestra lista de precios completa.',
+    answer: 'Sí, manejamos precios preferenciales por volumen: 24-47 unidades = precio base | 48-95 unidades = 5% descuento | 96+ unidades = 10% descuento. Solicita nuestra lista de precios completa.',
   },
   {
     question: '¿Tienen política de devolución?',
-    answer: 'Aceptamos devoluciones en productos sin usar dentro de los 30 días posteriores a la compra, sujeto a condiciones.',
+    answer: 'Aceptamos devoluciones en productos sin usar, con etiquetas y empaque original dentro de los 30 días. El cliente asume costo de envío de devolución. No aplica para pedidos personalizados.',
   },
   {
-    question: '¿Cómo puedo pagar mi pedido?',
-    answer: 'Aceptamos transferencia bancaria, pagos móviles y en algunas ubicaciones pago en efectivo. Contáctanos para más opciones.',
+    question: '¿Qué pasa si llega el pedido dañado?',
+    answer: 'Contamos con estricto control de calidad. En caso de recibir productos dañados, reporta dentro de las 48 horas con fotos del daño. Te reponemos sin costo adicional o creditamos el valor.',
   },
   {
     question: '¿Actualizan su inventario frecuentemente?',
-    answer: 'Sí, renovamos nuestro catálogo semanalmente con las últimas tendencias en denim y moda urbana.',
+    answer: 'Sí, renovamos nuestro catálogo semanalmente con las últimas tendencias en denim y moda urbana. Siguiendo las temporadas de moda internacionales y adaptándolas al mercado venezolano.',
   },
   {
     question: '¿Trabajan con tiendas pequeñas?',
-    answer: 'Absolutamente, nos adaptamos a negocios de todos los tamaños. Tenemos opciones flexibles para emprendedores y tiendas nuevas.',
+    answer: 'Absolutamente, nos adaptamos a negocios de todos los tamaños. Contamos con opciones flexibles para emprendedores, tiendas nuevas y boutiques. Puedes comenzar con pedidos de prueba.',
+  },
+  {
+    question: '¿Puedo ver los productos antes de comprar?',
+    answer: 'Sí, tenemos showroom en Valencia (Carrera 5 entre Calles 102-103, Centro). También podemos enviar fotos y videos detallados de cualquier producto. Para clientes del interior, enviamos muestras con costo.',
+  },
+  {
+    question: '¿Ofrecen venta mayorista exclusiva o hay mínimo?',
+    answer: 'Somos mayoristas puros. El mínimo por estilo es de 6 unidades. Para pedidos mayores a $1000, asignamos un ejecutivo de cuenta personalizado que te ayudará con tu negocio.',
   },
 ];
 

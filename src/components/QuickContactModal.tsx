@@ -54,12 +54,9 @@ export default function QuickContactModal() {
         >
           <div className="bg-[#25D366] p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center p-1">
-                <svg viewBox="0 0 541 541" className="w-full h-full text-white" aria-label="Virus Jeans Logo">
-                  <polygon fill="currentColor" points="280.21 71.91 519.73 71.9 268.54 500.48 175.53 337.65 228.45 244.76 231.12 245.57 271.13 313.37 355.31 165.78 280.21 165.78 280.21 71.91" />
-                  <path fill="currentColor" d="M263.38,93.27l-201.97-1.29,116.29,204.25c1.51,5.98-9.99,18.83-12.06,24.9L21.27,69.97h240.17l1.94,1.94v21.36Z" />
-                  <path fill="currentColor" d="M263.38,104.92v24.6H123.55l74.88,131.75c.68,1.54.07,2.71-.44,4.13-.58,1.63-11.86,20.21-12.94,20.78L82.13,103.64l181.26,1.29Z" />
-                  <path fill="currentColor" d="M263.38,142.47v23.3h-74.45c-.39,0-1.81-1.8-3.23-1.29l33.7,61.59-13.64,23.84-61.49-108.73,119.11,1.29Z" />
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                <svg viewBox="0 0 100 100" className="w-6 h-6 text-white" aria-label="Virus Jeans Logo">
+                  <polygon fill="currentColor" points="51.8,13.3 96,13.3 49.6,92.4 32.4,62.4 42.2,45.2 42.7,45.4 50.1,57.9 65.6,30.6 51.8,30.6 51.8,13.3" />
                 </svg>
               </div>
               <div>

@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+interface FeaturesBannerProps {
+  id?: string;
+}
+
 interface Feature {
   id: string;
   icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -42,7 +46,7 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function FeaturesBanner() {
+export default function FeaturesBanner({ id }: FeaturesBannerProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
   const [activeFeature, setActiveFeature] = useState<string | null>(null);
@@ -77,9 +81,9 @@ export default function FeaturesBanner() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="gradient-mesh py-10 lg:py-20">
+    <section id={id || 'features'} ref={sectionRef} className="gradient-mesh py-10 lg:py-20">
       <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 lg:gap-6">
+        <div className="justify-center grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
           {features.map((feature) => (
             <article 
               key={feature.id} 
@@ -100,9 +104,9 @@ export default function FeaturesBanner() {
                     activeFeature === feature.id ? 'transform -translate-y-1' : ''
                   }`}
                 >
-                  <div className="flex flex-row lg:flex-col items-center lg:items-start gap-3 lg:gap-0 mb-2 lg:mb-3">
+                  <div className="flex flex-row items-center lg:items-center gap-3 lg:gap-4 mb-2 lg:mb-3">
                     <feature.icon 
-                      className="w-8 h-8 lg:w-12 lg:h-12 shrink-0 transition-colors duration-300 text-brand-secondary"
+                      className="w-8 h-8 lg:w-12 lg:h-12 shrink-0 transition-colors duration-300 text-blue-300"
                       strokeWidth={1.5} 
                       aria-hidden="true"
                     />
@@ -110,7 +114,7 @@ export default function FeaturesBanner() {
                       {feature.title}
                     </h3>
                   </div>
-                  <p className="font-body text-sm text-neutral-500 leading-relaxed text-center lg:text-left">
+                  <p className="font-body text-sm text-gray-100 leading-relaxed text-center lg:text-left">
                     {feature.description}
                   </p>
                 </div>

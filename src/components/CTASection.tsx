@@ -3,12 +3,16 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CONTACT } from '../constants/contact';
 
+interface CTASectionProps {
+  id?: string;
+}
+
 const checkReducedMotion = (): boolean => {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function CTASection() {
+export default function CTASection({ id }: CTASectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
 
@@ -42,15 +46,18 @@ export default function CTASection() {
   }, []);
 
   return (
-    <section id="catalogo" data-contacto ref={sectionRef} className="gradient-mesh py-20 lg:py-28 text-center">
+    <section id={id || 'catalogo'} data-contacto ref={sectionRef} className="gradient-mesh py-20 lg:py-28 text-center">
       <div className="max-w-[900px] mx-auto px-6">
         <h2 className="cta-animate font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white mb-4">
-          ¿LISTO PARA STOCK
+          ¿LISTOS PARA ESTOQUEAR
           <br />
           TU TIENDA?
         </h2>
-        <p className="cta-animate font-body text-lg lg:text-xl text-neutral-500 mb-10 lg:mb-12">
-          Contáctanos para precios al por mayor y pedidos personalizados.
+        <p className="cta-animate font-body text-lg lg:text-xl text-white/60 mb-6">
+          Tu proveedor mayorista de confianza para denim y moda en Venezuela
+        </p>
+        <p className="cta-animate font-body text-base text-neutral-400 mb-10 lg:mb-12">
+          Compra mínima: 6 piezas • Envíos a todo el país • Nueva colección cada semana
         </p>
         <div className="cta-animate flex flex-col sm:flex-row gap-4 justify-center">
           <a
@@ -66,7 +73,7 @@ export default function CTASection() {
           </a>
           <a
             href="#catalogo"
-            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-brand-secondary text-brand-secondary px-10 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] hover:bg-brand-secondary hover:text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-secondary focus:ring-offset-2 focus:ring-offset-brand-navy transition-all duration-300 rounded-full"
+            className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-10 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] hover:bg-white hover:text-brand-navy focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-navy transition-all duration-300 rounded-full"
           >
             Descargar Lista de Precios
           </a>

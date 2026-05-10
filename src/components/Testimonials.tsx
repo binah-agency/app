@@ -3,6 +3,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CONTACT } from '../constants/contact';
 
+interface TestimonialsProps {
+  id?: string;
+}
+
 interface Testimonial {
   id: string;
   quote: string;
@@ -39,7 +43,7 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function Testimonials() {
+export default function Testimonials({ id }: TestimonialsProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
 
@@ -73,15 +77,15 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-brand-secondary py-20 lg:py-28">
+    <section id={id || 'testimonios'} ref={sectionRef} className="bg-brand-secondary py-20 lg:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-brand-navy700 text-center mb-12 lg:mb-16">
+        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white text-center mb-12 lg:mb-16">
           LO QUE DICEN NUESTROS SOCIOS
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10 lg:mb-12">
           {testimonials.map((t) => (
-            <article key={t.id} className="testimonial-card bg-brand-navy p-8 lg:p-10" style={{ borderRadius: '16px' }}>
+            <article key={t.id} className="testimonial-card bg-gradient-to-br from-brand-navyLight to-brand-navy p-8 lg:p-10" style={{ borderRadius: '16px' }}>
               <blockquote className="font-body text-base lg:text-lg text-white leading-[1.7] mb-6">
                 "{t.quote}"
               </blockquote>
@@ -99,7 +103,7 @@ export default function Testimonials() {
                     <p className="font-accent text-sm font-semibold tracking-[1px] text-white">
                       {t.name}
                     </p>
-                    <p className="font-body text-sm text-neutral-500">{t.role}</p>
+                    <p className="font-body text-sm text-white/60">{t.role}</p>
                   </div>
                 </div>
               </div>

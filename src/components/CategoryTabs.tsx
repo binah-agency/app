@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { X } from 'lucide-react';
+import { X, ChevronDown } from 'lucide-react';
 
 interface CategoryItem {
   title: string;
@@ -11,6 +11,11 @@ interface CategoryItem {
 
 interface CategoryData {
   [key: string]: CategoryItem[];
+}
+
+interface CategoryTabsProps {
+  initialCategory?: string;
+  onCategoryChange?: (category: string) => void;
 }
 
 const tabs = ['HOMBRE', 'MUJER', 'NIÑOS', 'DEPORTIVO'] as const;
@@ -47,12 +52,18 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function CategoryTabs() {
-  const [activeTab, setActiveTab] = useState<typeof tabs[number]>('HOMBRE');
+export default function CategoryTabs({ initialCategory, onCategoryChange }: CategoryTabsProps) {
+  const [activeTab, setActiveTab] = useState<typeof tabs[number]>(initialCategory as typeof tabs[number] || 'HOMBRE');
   const [selectedCategory, setSelectedCategory] = useState<CategoryItem | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => {
+    if (initialCategory && tabs.includes(initialCategory as typeof tabs[number])) {
+      setActiveTab(initialCategory as typeof tabs[number]);
+    }
+  }, [initialCategory]);
 
   const handleTabChange = useCallback((tab: typeof tabs[number]) => {
     if (tab === activeTab) return;
@@ -60,6 +71,7 @@ export default function CategoryTabs() {
     const grid = gridRef.current;
     if (!grid || prefersReducedMotion.current) {
       setActiveTab(tab);
+      onCategoryChange?.(tab);
       return;
     }
 
@@ -71,9 +83,10 @@ export default function CategoryTabs() {
       duration: 0.2,
       onComplete: () => {
         setActiveTab(tab);
+        onCategoryChange?.(tab);
       },
     });
-  }, [activeTab]);
+  }, [activeTab, onCategoryChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
     let newIndex = index;
@@ -134,30 +147,54 @@ export default function CategoryTabs() {
           </p>
         </div>
 
-        <div 
-          className="flex flex-wrap justify-center gap-3 lg:gap-4 mb-10 lg:mb-12"
-          role="tablist"
-          aria-label="Categorías de productos"
-        >
-          {tabs.map((tab, index) => (
-            <button
-              key={tab}
-              ref={(el) => { tabRefs.current[index] = el; }}
-              onClick={() => handleTabChange(tab)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
-              role="tab"
-              aria-selected={activeTab === tab}
-              aria-controls="category-panel"
-              tabIndex={activeTab === tab ? 0 : -1}
-              className={`font-accent text-sm font-medium uppercase tracking-[1.5px] px-6 sm:px-8 py-3 border-2 border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 rounded-full ${
-                activeTab === tab
-                  ? 'bg-white text-brand-navy'
-                  : 'bg-transparent text-white hover:bg-white/20 focus:bg-white/20'
-              }`}
+        <div className="mb-10 lg:mb-12">
+          <div className="lg:hidden mb-6 relative">
+            <select
+              value={activeTab}
+              onChange={(e) => handleTabChange(e.target.value as 'HOMBRE' | 'MUJER' | 'NIÑOS' | 'DEPORTIVO')}
+              className="w-full font-accent text-sm font-medium uppercase tracking-[1.5px] px-6 py-3 pr-12 border border-gray-300 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-navy focus:border-transparent rounded-full appearance-none cursor-pointer"
+              aria-label="Seleccionar categoría"
             >
-              {tab}
-            </button>
-          ))}
+              <option value="" disabled className="text-gray-500">
+                Selecciona la categoría
+              </option>
+              {tabs.map((tab) => (
+                <option key={tab} value={tab} className="text-gray-700">
+                  {tab}
+                </option>
+              ))}
+            </select>
+            <ChevronDown 
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none"
+              aria-hidden="true"
+            />
+          </div>
+          
+          <div 
+            className="hidden lg:flex flex-wrap justify-center gap-3 lg:gap-4"
+            role="tablist"
+            aria-label="Categorías de productos"
+          >
+            {tabs.map((tab, index) => (
+              <button
+                key={tab}
+                ref={(el) => { tabRefs.current[index] = el; }}
+                onClick={() => handleTabChange(tab)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                role="tab"
+                aria-selected={activeTab === tab}
+                aria-controls="category-panel"
+                tabIndex={activeTab === tab ? 0 : -1}
+                className={`font-accent text-sm font-medium uppercase tracking-[1.5px] px-6 sm:px-8 py-3 border-2 border-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 rounded-full ${
+                  activeTab === tab
+                    ? 'bg-white text-brand-navy'
+                    : 'bg-transparent text-white hover:bg-white/20 focus:bg-white/20'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div
@@ -170,7 +207,8 @@ export default function CategoryTabs() {
           {categoryData[activeTab].map((item) => (
             <article
               key={`${activeTab}-${item.title}`}
-              className="cat-card group cursor-pointer rounded-sm overflow-hidden lg:cursor-default"
+              className="bg-gray-800 pb-4 
+              rounded-[0.5rem] lg:rounded-[1rem] cat-card group cursor-pointer overflow-hidden lg:cursor-default"
               onClick={() => setSelectedCategory(item)}
               role="button"
               tabIndex={0}
@@ -181,11 +219,11 @@ export default function CategoryTabs() {
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
-                  className="w-full aspect-[3/4] object-cover transition-transform duration-400 group-hover:scale-[1.03] group-focus-within:scale-[1.03]"
+                  className="w-full aspect-[3/4] object-cover transition-transform duration-400 group-hover:scale-105 group-focus-within:scale-105"
                 />
               </div>
-              <h3 className="font-display text-xl lg:text-2xl text-white">{item.title}</h3>
-              <p className="font-body text-sm text-neutral-300">{item.subtitle}</p>
+              <h3 className="px-4 font-display text-xl lg:text-2xl text-white">{item.title}</h3>
+              <p className="px-4 font-body text-sm text-neutral-300">{item.subtitle}</p>
             </article>
           ))}
         </div>
@@ -193,7 +231,7 @@ export default function CategoryTabs() {
         <div className="text-center mt-10 lg:mt-12">
           <a
             href="#catalogo"
-            className="btn-primary"
+            className="inline-flex items-center justify-center bg-white text-brand-navy px-8 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] transition-all duration-300 hover:scale-[1.02] rounded-full border-2 border-brand-navy"
           >
             Ver Todas las Categorías
           </a>

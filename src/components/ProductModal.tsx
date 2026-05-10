@@ -9,6 +9,8 @@ interface ProductModalProps {
   price?: string;
   minOrder?: string;
   badge?: string;
+  stock?: string;
+  isLowStock?: boolean;
   ctaText?: string;
   ctaHref?: string;
 }
@@ -22,6 +24,8 @@ export default function ProductModal({
   price,
   minOrder,
   badge,
+  stock,
+  isLowStock,
   ctaText = 'Ver Catálogo',
   ctaHref = '#catalogo',
 }: ProductModalProps) {
@@ -77,9 +81,22 @@ export default function ProductModal({
         )}
         
         {minOrder && (
-          <p className="font-body text-sm text-text-muted mb-4">
+          <p className="font-body text-sm text-text-muted mb-2">
             {minOrder}
           </p>
+        )}
+        
+        {stock && (
+          <div className={`mb-4 ${isLowStock ? 'animate-pulse' : ''}`}>
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-accent text-xs font-semibold uppercase ${
+              isLowStock 
+                ? 'bg-red-500 text-white' 
+                : 'bg-green-500 text-white'
+            }`}>
+              <span className={`w-2 h-2 rounded-full ${isLowStock ? 'bg-white animate-ping' : 'bg-white'}`} />
+              {isLowStock ? `¡Últimas ${stock}!` : `Stock: ${stock}`}
+            </span>
+          </div>
         )}
         
         <a

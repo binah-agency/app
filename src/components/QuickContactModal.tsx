@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 
 const PRESET_MESSAGES = [
   "Hola, me interesa conocer el catálogo de jeans",
@@ -50,10 +50,15 @@ export default function QuickContactModal() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-[100] bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all duration-300 hover:scale-110 flex items-center justify-center"
+        className="fixed bottom-4 right-4 z-[100] w-14 h-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center animate-pulse"
+        style={{ backgroundColor: '#0a1628' }}
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat de WhatsApp"}
       >
-        {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
+        {isOpen ? <X size={24} className="text-white" /> : (
+          <svg viewBox="0 0 100 100" className="w-8 h-8 text-white" aria-label="Virus Jeans Logo">
+            <polygon fill="currentColor" points="51.8,13.3 96,13.3 49.6,92.4 32.4,62.4 42.2,45.2 42.7,45.4 50.1,57.9 65.6,30.6 51.8,30.6 51.8,13.3" />
+          </svg>
+        )}
       </button>
 
       {isOpen && (
@@ -63,9 +68,9 @@ export default function QuickContactModal() {
           aria-modal="true"
           aria-labelledby="quick-contact-title"
         >
-          <div className="bg-[#25D366] p-4 flex items-center justify-between">
+          <div className="bg-brand-navy p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
                 <svg viewBox="0 0 100 100" className="w-6 h-6 text-white" aria-label="Virus Jeans Logo">
                   <polygon fill="currentColor" points="51.8,13.3 96,13.3 49.6,92.4 32.4,62.4 42.2,45.2 42.7,45.4 50.1,57.9 65.6,30.6 51.8,30.6 51.8,13.3" />
                 </svg>
@@ -74,7 +79,7 @@ export default function QuickContactModal() {
                 <h3 id="quick-contact-title" className="font-accent text-white font-semibold">
                   Virus Jeans
                 </h3>
-                <p className="text-white/80 text-xs">En línea ahora</p>
+                <p className="text-brand-secondary text-xs">Escríbenos por WhatsApp</p>
               </div>
             </div>
             <button
@@ -124,7 +129,7 @@ export default function QuickContactModal() {
             <button
               onClick={handleSend}
               disabled={!selectedPreset || (selectedPreset === "Otro motivo (escribir)" && !customMessage)}
-              className="w-full bg-[#25D366] text-white py-3 px-4 rounded-xl font-accent text-sm font-medium flex items-center justify-center gap-2 hover:bg-[#128C7E] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full bg-brand-navy text-white py-3 px-4 rounded-xl font-accent text-sm font-medium flex items-center justify-center gap-2 hover:bg-brand-navyLight disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <Send size={18} />
               Enviar mensaje

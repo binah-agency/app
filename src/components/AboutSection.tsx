@@ -3,12 +3,16 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { COMPANY, CONTACT } from '../constants/contact';
 
+interface AboutSectionProps {
+  id?: string;
+}
+
 const checkReducedMotion = (): boolean => {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function AboutSection() {
+export default function AboutSection({ id }: AboutSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
 
@@ -63,7 +67,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-white py-20 lg:py-28">
+    <section id={id || 'nosotros'} ref={sectionRef} className="bg-white py-20 lg:py-28">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           <div className="about-left w-full lg:w-[45%]">

@@ -12,6 +12,10 @@ interface Product {
   isNew: boolean;
 }
 
+interface ProductShowcaseProps {
+  id?: string;
+}
+
 const products: Product[] = [
   {
     id: 'slim-fit-denim',
@@ -52,7 +56,7 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function ProductShowcase() {
+export default function ProductShowcase({ id }: ProductShowcaseProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
@@ -96,7 +100,7 @@ export default function ProductShowcase() {
   };
 
   return (
-    <section id="productos" ref={sectionRef} className="bg-white py-20 lg:py-28">
+    <section id={id || 'productos'} ref={sectionRef} className="bg-white py-20 lg:py-28">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-navy700 mb-4">

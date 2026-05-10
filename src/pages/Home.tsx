@@ -75,7 +75,7 @@ export function Home() {
   }, [initGSAP]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Navbar />
       <main id="main-content" ref={mainRef}>
         <Hero />
@@ -83,6 +83,7 @@ export function Home() {
         <ParallaxGallery />
         <CategoryTabs />
         <FeaturesBanner />
+        <div className="h-px bg-gradient-to-r from-transparent via-brand-secondary/30 to-transparent" />
         <ProductShowcase />
         <AboutSection />
         <Testimonials />
@@ -97,4 +98,3 @@ export function Home() {
     </div>
   );
 }
-

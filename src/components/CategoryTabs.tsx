@@ -13,6 +13,12 @@ interface CategoryData {
   [key: string]: CategoryItem[];
 }
 
+interface CategoryTabsProps {
+  initialCategory?: string;
+  onCategoryChange?: (category: string) => void;
+  id?: string;
+}
+
 const tabs = ['HOMBRE', 'MUJER', 'NIÑOS', 'DEPORTIVO'] as const;
 
 const categoryData: CategoryData = {
@@ -47,12 +53,18 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function CategoryTabs() {
-  const [activeTab, setActiveTab] = useState<typeof tabs[number]>('HOMBRE');
+export default function CategoryTabs({ initialCategory, onCategoryChange, id }: CategoryTabsProps) {
+  const [activeTab, setActiveTab] = useState<typeof tabs[number]>(initialCategory as typeof tabs[number] || 'HOMBRE');
   const [selectedCategory, setSelectedCategory] = useState<CategoryItem | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => {
+    if (initialCategory && tabs.includes(initialCategory as typeof tabs[number])) {
+      setActiveTab(initialCategory as typeof tabs[number]);
+    }
+  }, [initialCategory]);
 
   const handleTabChange = useCallback((tab: typeof tabs[number]) => {
     if (tab === activeTab) return;
@@ -71,9 +83,10 @@ export default function CategoryTabs() {
       duration: 0.2,
       onComplete: () => {
         setActiveTab(tab);
+        onCategoryChange?.(tab);
       },
     });
-  }, [activeTab]);
+  }, [activeTab, onCategoryChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
     let newIndex = index;
@@ -123,7 +136,7 @@ export default function CategoryTabs() {
   }, [activeTab]);
 
   return (
-    <section id="categorias" className="bg-brand-secondary py-20 lg:py-28">
+    <section id={id || 'categorias'} className="bg-brand-secondary py-20 lg:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="scroll-reveal text-center mb-12 lg:mb-16">
           <h2 className="reveal-item font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white mb-4">

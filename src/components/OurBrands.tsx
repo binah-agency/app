@@ -1,9 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Brand {
   id: number;
   name: string;
   logo: string;
+}
+
+interface OurBrandsProps {
+  id?: string;
 }
 
 const mainBrands: Brand[] = [
@@ -20,7 +24,7 @@ const otherBrands: Brand[] = [
   { id: 8, name: 'Diesel', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Diesel_Logo.svg' },
 ];
 
-export default function OurBrands() {
+export default function OurBrands({ id }: OurBrandsProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -31,7 +35,7 @@ export default function OurBrands() {
   const allBrands = [...mainBrands, ...mainBrands, ...mainBrands, ...mainBrands, ...mainBrands, ...mainBrands, ...mainBrands, ...mainBrands, ...mainBrands, ...mainBrands, ...otherBrands];
 
   return (
-    <section className="py-16 lg:py-20 bg-white overflow-hidden">
+    <section id={id || 'marcas'} className="py-16 lg:py-20 bg-white overflow-hidden">
       <div className="text-center mb-12 px-6">
         <span className="font-accent text-sm font-medium tracking-[2px] uppercase text-neutral-500 mb-4 block">
           NUESTRAS MARCAS

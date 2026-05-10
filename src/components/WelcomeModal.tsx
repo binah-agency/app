@@ -166,7 +166,7 @@ export default function WelcomeModal() {
             </div>
 
             <div className="p-6 space-y-4">
-              {rewards.map((reward, index) => (
+              {rewards.map((reward) => (
                 <button
                   key={reward.id}
                   onClick={() => setSelectedReward(reward.id)}

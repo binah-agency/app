@@ -3,6 +3,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BenefitHeading from './BenefitHeading';
 
+interface ParallaxGalleryProps {
+  id?: string;
+}
+
 interface GalleryRowProps {
   images: string[];
   direction: 'left' | 'right';
@@ -210,7 +214,7 @@ function GalleryRow({ images, direction, speed }: GalleryRowProps) {
   );
 }
 
-export default function ParallaxGallery() {
+export default function ParallaxGallery({ id }: ParallaxGalleryProps) {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
 
@@ -243,7 +247,7 @@ export default function ParallaxGallery() {
     return (
       <>
         <BenefitHeading />
-        <section className="bg-bg-light py-16 lg:py-20">
+        <section id={id} className="bg-bg-light py-16 lg:py-20">
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-navy700 text-center mb-10 lg:mb-12 px-4">
             NUESTRAS COLECCIONES
           </h2>
@@ -257,7 +261,7 @@ export default function ParallaxGallery() {
   return (
     <>
       <BenefitHeading />
-      <section className="bg-bg-light py-16 lg:py-20 overflow-hidden">
+      <section id={id} className="bg-bg-light py-16 lg:py-20 overflow-hidden">
         <h2
         ref={titleRef}
         className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-brand-navy700 text-center mb-10 lg:mb-12 px-4"

@@ -10,6 +10,10 @@ interface Feature {
   description: string;
 }
 
+interface FeaturesBannerProps {
+  id?: string;
+}
+
 const features: Feature[] = [
   {
     id: 'envio-mayor',
@@ -42,7 +46,7 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function FeaturesBanner() {
+export default function FeaturesBanner({ id }: FeaturesBannerProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
   const [activeFeature, setActiveFeature] = useState<string | null>(null);
@@ -77,7 +81,7 @@ export default function FeaturesBanner() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="gradient-mesh py-10 lg:py-20">
+    <section id={id || 'features'} ref={sectionRef} className="gradient-mesh py-10 lg:py-20">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="justify-center grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
           {features.map((feature) => (

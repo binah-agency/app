@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function BenefitHeading() {
   const headingRef = useRef<HTMLDivElement>(null);

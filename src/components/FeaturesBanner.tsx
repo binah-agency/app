@@ -85,7 +85,7 @@ export default function FeaturesBanner({ id }: FeaturesBannerProps) {
   }, []);
 
   return (
-    <section id={id || 'features'} ref={sectionRef} className="gradient-mesh py-10 lg:py-20">
+    <section id={id || 'features'} ref={sectionRef} className="bg-gradient-to-br from-brand-navy via-brand-navyLight to-brand-navy700 py-10 lg:py-20">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="justify-center grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
           {features.map((feature) => (

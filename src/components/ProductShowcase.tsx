@@ -125,7 +125,7 @@ export default function ProductShowcase({ id }: ProductShowcaseProps) {
               tabIndex={0}
               aria-label={`Ver detalles de ${product.name}`}
             >
-              <div className="relative overflow-hidden aspect-[3/4] mb-4 bg-bg-gray rounded-md">
+              <div className="relative overflow-hidden aspect-[3/4] mb-0 lg:mb-4 bg-bg-gray rounded-md">
                 {!loadedImages.has(product.id) && (
                   <div 
                     className="absolute inset-0 skeleton" 
@@ -152,7 +152,7 @@ export default function ProductShowcase({ id }: ProductShowcaseProps) {
                 )}
                 <button
                   type="button"
-                  className="absolute bottom-0 left-0 right-0 bg-brand-navy text-white py-3 font-accent text-[13px] font-medium uppercase text-center translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0 group-active:translate-y-0 transition-transform duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-inset touch-manipulation no-tap-highlight rounded-tl-[0.5rem] rounded-tr-[0.5rem] px-1"
+                  className="absolute bottom-0 left-0 right-0 bg-brand-navy text-white py-3 font-accent text-[13px] font-medium uppercase text-center lg:translate-y-full lg:group-hover:translate-y-0 lg:group-focus-within:translate-y-0 lg:group-active:translate-y-0 lg:transition-transform lg:duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-inset touch-manipulation no-tap-highlight rounded-tl-[0.5rem] rounded-tr-[0.5rem] px-1"
                   aria-label={`Agregar ${product.name} a cotización`}
                 >
                   Agregar a Cotización

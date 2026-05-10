@@ -61,7 +61,7 @@ export default function CTASection({ id }: CTASectionProps) {
         </p>
         <div className="cta-animate flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href={CONTACT.whatsapp}
+            href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Estoy en la sección de llamada a la acción de la página y me interesa empezar a comprar con ustedes. ¿Cuál es el proceso para hacer un pedido y cuáles son los requisitos?')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-whatsapp px-10 py-4 hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-brand-navy rounded-full"

@@ -118,7 +118,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <a
-              href={CONTACT.whatsapp}
+              href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi el menú de la página y me gustaría contactarlos. ¿Me pueden ayudar?')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 bg-[#25D366] text-white px-5 py-2.5 font-accent text-[13px] font-medium uppercase tracking-[1px] hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 transition-colors duration-300 rounded-md"
@@ -180,7 +180,7 @@ export default function Navbar() {
               })}
               <div className="w-full border-t border-border-custom my-2" />
               <a
-                href={CONTACT.whatsapp}
+                href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Estoy viendo la página desde mi celular y me gustaría contactarlos. ¿Me pueden ayudar?')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => handleLinkClick()}

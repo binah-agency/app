@@ -30,7 +30,7 @@ export default function Footer() {
                 <Facebook size={22} aria-hidden="true" />
               </a>
               <a
-                href={CONTACT.whatsapp}
+                href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi el pie de página de la web y me gustaría contactarlos. ¿Pueden orientarme sobre cómo hacer un pedido?')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-secondary hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-colors duration-300"

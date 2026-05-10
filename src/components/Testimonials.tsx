@@ -113,7 +113,7 @@ export default function Testimonials({ id }: TestimonialsProps) {
 
         <div className="text-center">
           <a
-            href={CONTACT.whatsapp}
+            href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi los testimonios de clientes en la página y me interessó mucho. Me gustaría convertirme en socio y empezar a comprar al por mayor. ¿Qué pasos debo seguir?')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-brand-navy text-white px-8 py-4 font-accent text-sm font-semibold uppercase tracking-[1.5px] hover:bg-brand-navyHover focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2 transition-colors duration-300 rounded-full"

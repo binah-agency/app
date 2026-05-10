@@ -129,7 +129,7 @@ export default function AboutSection({ id }: AboutSectionProps) {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href={CONTACT.whatsapp}
+                href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi la sección \"Sobre Nosotros\" de la página y me gustaría conocer más. ¿Cuántos años de experiencia tienen y cuáles son los beneficios de trabajar con ustedes?')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 font-accent text-sm font-medium uppercase tracking-[1.5px] transition-all duration-300 hover:bg-[#128C7E] rounded-full"

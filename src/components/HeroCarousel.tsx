@@ -135,7 +135,7 @@ export default function HeroCarousel() {
                   </p>
                 )}
                 <a
-                  href={CONTACT.whatsapp}
+                  href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Vi el banner principal de la página y me interesa mucho. ¿Me pueden dar más información sobre los productos que ofrecen?')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-brand-secondary text-neutral-100 px-6 py-3 rounded-full font-accent text-sm font-bold uppercase tracking-[1px] hover:bg-yellow-400 transition-all duration-300 mt-4"

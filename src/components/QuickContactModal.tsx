@@ -47,7 +47,7 @@ export default function QuickContactModal() {
 
       {isOpen && (
         <div 
-          className="fixed bottom-24 right-6 z-[80] w-80 lg:w-96 bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 sm:w-96 md:w-[28rem] lg:w-[32rem] bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
           role="dialog"
           aria-modal="true"
           aria-labelledby="quick-contact-title"

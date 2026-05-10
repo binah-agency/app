@@ -11,6 +11,7 @@ import ProductShowcase from '../components/ProductShowcase';
 import AboutSection from '../components/AboutSection';
 import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
+import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
 import ExitIntentModal from '../components/ExitIntentModal';
 import NewsletterModal from '../components/NewsletterModal';
@@ -88,6 +89,7 @@ export function Home() {
         <AboutSection />
         <Testimonials />
         <CTASection />
+        <FAQSection />
       </main>
       <Footer />
       <ExitIntentModal>

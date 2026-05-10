@@ -50,7 +50,7 @@ export default function QuickContactModal() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all duration-300 hover:scale-110 flex items-center justify-center"
+        className="fixed bottom-4 right-4 z-[100] bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all duration-300 hover:scale-110 flex items-center justify-center"
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat de WhatsApp"}
       >
         {isOpen ? <X size={26} /> : <MessageCircle size={26} />}
@@ -58,7 +58,7 @@ export default function QuickContactModal() {
 
       {isOpen && (
         <div 
-          className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 sm:w-96 md:w-[28rem] lg:w-[32rem] bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-24 right-4 left-4 sm:left-auto sm:right-6 sm:w-96 md:w-[28rem] lg:w-[32rem] bg-white rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300 z-[110]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="quick-contact-title"

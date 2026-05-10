@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Award, Package, Store } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { COMPANY, CONTACT } from '../constants/contact';
@@ -71,21 +72,28 @@ export default function AboutSection({ id }: AboutSectionProps) {
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           <div className="about-left w-full lg:w-[45%]">
+<div className="lg:hidden flex items-center justify-center gap-2 bg-brand-navy py-5 px-4 rounded-t-2xl">
+              <svg viewBox="0 0 541 541" className="h-10 w-auto text-brand-accent shrink-0" aria-label="Virus Jeans Logo">
+                <polygon fill="currentColor" points="280.21 71.91 519.73 71.9 268.54 500.48 175.53 337.65 228.45 244.76 231.12 245.57 271.13 313.37 355.31 165.78 280.21 165.78 280.21 71.91"/>
+                <path fill="currentColor" d="M263.38,93.27l-201.97-1.29,116.29,204.25c1.51,5.98-9.99-18.83-12.06,24.9L21.27,69.97h240.17l1.94,1.94v21.36Z"/>
+                <path fill="currentColor" d="M263.38,104.92v24.6H123.55l74.88,131.75c.68,1.54.07,2.71-.44,4.13-.58,1.63-11.86,20.21-12.94,20.78L82.13,103.64l181.26,1.29Z"/>
+                <path fill="currentColor" d="M263.38,142.47v23.3h-74.45c-.39,0-1.81-1.8-3.23-1.29l33.7,61.59-13.64,23.84-61.49-108.73,119.11,1.29Z"/>
+              </svg>
+              <span className="font-display text-3xl sm:text-4xl text-white tracking-[3px]">VIRUS JEANS</span>
+            </div>
             <img
               src="/images/about-hero.jpg"
               alt="Virus Jeans - Tu proveedor de confianza"
               loading="lazy"
-              className="w-full aspect-[4/5] object-cover rounded-2xl"
+              className="w-full aspect-[4/5] object-cover rounded-b-2xl lg:rounded-2xl bg-brand-navy"
             />
           </div>
           <div className="about-right w-full lg:w-[55%] lg:pl-8">
 <span className="font-accent text-sm font-medium tracking-[2px] uppercase text-neutral-500 mb-4 block">
               SOBRE NOSOTROS
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-brand-navy leading-[1.0] mb-6">
-              TU PROVEEDOR
-              <br />
-              DE CONFIANZA
+            <h2 className="font-display text-5xl sm:text-6xl lg:text-5xl xl:text-6xl text-brand-navy leading-[0.95] mb-6 w-full">
+              TU PROVEEDOR<br />DE CONFIANZA
             </h2>
             <p className="font-body text-base lg:text-lg text-neutral-700 leading-[1.7] mb-4">
               Desde 2010 siendo el proveedor mayorista favorito de más de <strong>500 comercios</strong> en Venezuela. 
@@ -96,18 +104,18 @@ export default function AboutSection({ id }: AboutSectionProps) {
               cada semana y envíos a todo el país.
             </p>
             
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white p-4 rounded-xl shadow-sm">
-                <span className="font-display text-3xl lg:text-4xl text-brand-navy700">{COMPANY.yearsExperience}</span>
-                <p className="font-body text-sm text-neutral-500 mt-1">Años en el mercado</p>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-8 w-full">
+              <div className="bg-white px-6 py-4 rounded-2xl border-2 border-gray-200 flex items-center gap-4 w-full sm:w-auto">
+                <Award className="w-8 h-8 text-brand-navy shrink-0" aria-hidden="true" />
+                <span className="font-display text-2xl sm:text-3xl text-brand-navy">{COMPANY.yearsExperience} AÑOS</span>
               </div>
-              <div className="bg-white p-4 rounded-xl shadow-sm">
-                <span className="font-display text-3xl lg:text-4xl text-brand-navy700">{COMPANY.monthlyUnits}</span>
-                <p className="font-body text-sm text-neutral-500 mt-1">Unidades mensuales</p>
+              <div className="bg-white px-6 py-4 rounded-2xl border-2 border-gray-200 flex items-center gap-4 w-full sm:w-auto">
+                <Package className="w-8 h-8 text-brand-navy shrink-0" aria-hidden="true" />
+                <span className="font-display text-2xl sm:text-3xl text-brand-navy">{COMPANY.monthlyUnits} UNIDADES</span>
               </div>
-              <div className="bg-white p-4 rounded-xl shadow-sm">
-                <span className="font-display text-3xl lg:text-4xl text-brand-navy700">500+</span>
-                <p className="font-body text-sm text-neutral-500 mt-1">Tiendas atendidas</p>
+              <div className="bg-white px-6 py-4 rounded-2xl border-2 border-gray-200 flex items-center gap-4 w-full sm:w-auto">
+                <Store className="w-8 h-8 text-brand-navy shrink-0" aria-hidden="true" />
+                <span className="font-display text-2xl sm:text-3xl text-brand-navy">500+ TIENDAS</span>
               </div>
             </div>
 

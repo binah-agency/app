@@ -255,3 +255,12 @@
     radial-gradient(ellipse 40% 30% at 50% 80%, rgba(61, 90, 128, 0.25) 0%, transparent 50%),
     linear-gradient(135deg, #0a1628 0%, #0f2744 50%, #1e3a5f 100%);
 }
+
+@keyframes widget-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.widget-pulse {
+  animation: widget-pulse 2s ease-in-out infinite;
+}

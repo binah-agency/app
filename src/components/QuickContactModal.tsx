@@ -50,13 +50,13 @@ export default function QuickContactModal() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-[100] w-14 h-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center animate-pulse"
-        style={{ backgroundColor: '#0a1628' }}
+        className="fixed bottom-4 right-4 z-[100] w-14 h-14 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center widget-pulse"
+        style={{ backgroundColor: '#25D366' }}
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat de WhatsApp"}
       >
         {isOpen ? <X size={24} className="text-white" /> : (
-          <svg viewBox="0 0 100 100" className="w-8 h-8 text-white" aria-label="Virus Jeans Logo">
-            <polygon fill="currentColor" points="51.8,13.3 96,13.3 49.6,92.4 32.4,62.4 42.2,45.2 42.7,45.4 50.1,57.9 65.6,30.6 51.8,30.6 51.8,13.3" />
+          <svg viewBox="0 0 100 100" className="w-7 h-7" style={{ fill: 'white' }} aria-label="Virus Jeans Logo">
+            <polygon points="51.8,13.3 96,13.3 49.6,92.4 32.4,62.4 42.2,45.2 42.7,45.4 50.1,57.9 65.6,30.6 51.8,30.6 51.8,13.3" />
           </svg>
         )}
       </button>

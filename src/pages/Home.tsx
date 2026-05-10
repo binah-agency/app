@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, createContext, useContext, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from '../components/Navbar';
@@ -11,17 +11,31 @@ import ProductShowcase from '../components/ProductShowcase';
 import AboutSection from '../components/AboutSection';
 import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
+import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
+import DynamicBanner from '../components/DynamicBanner';
 import ExitIntentModal from '../components/ExitIntentModal';
 import NewsletterModal from '../components/NewsletterModal';
 import QuickContactModal from '../components/QuickContactModal';
 import WelcomeModal from '../components/WelcomeModal';
+
+const CategoryContext = createContext<{
+  activeCategory: string;
+  setActiveCategory: (cat: string) => void;
+} | null>(null);
+
+export const useCategory = () => {
+  const ctx = useContext(CategoryContext);
+  if (!ctx) throw new Error('useCategory must be used within CategoryProvider');
+  return ctx;
+};
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export function Home() {
+  const [activeCategory, setActiveCategory] = useState('HOMBRE');
   const mainRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(false);
 
@@ -75,26 +89,31 @@ export function Home() {
   }, [initGSAP]);
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <main id="main-content" ref={mainRef}>
-        <Hero />
-        <OurBrands />
-        <ParallaxGallery />
-        <CategoryTabs />
-        <FeaturesBanner />
-        <ProductShowcase />
-        <AboutSection />
-        <Testimonials />
-        <CTASection />
-      </main>
-      <Footer />
-      <ExitIntentModal>
-        <NewsletterModal />
-      </ExitIntentModal>
-      <QuickContactModal />
-      <WelcomeModal />
-    </div>
+    <CategoryContext.Provider value={{ activeCategory, setActiveCategory }}>
+      <div className="min-h-screen bg-white overflow-x-hidden">
+        <Navbar />
+        <DynamicBanner />
+        <main id="main-content" ref={mainRef}>
+          <Hero id="hero" />
+          <OurBrands id="marcas" />
+          <ParallaxGallery id="colecciones" />
+          <CategoryTabs initialCategory={activeCategory} onCategoryChange={setActiveCategory} />
+          <FeaturesBanner id="features" />
+          <AboutSection id="nosotros" />
+          <div className="h-px bg-gradient-to-r from-transparent via-brand-secondary/30 to-transparent" />
+          <ProductShowcase id="productos" />
+          <Testimonials id="testimonios" />
+          <CTASection id="catalogo" />
+          <FAQSection id="faq" />
+        </main>
+        <Footer />
+        <ExitIntentModal>
+          <NewsletterModal />
+        </ExitIntentModal>
+        <QuickContactModal />
+        <WelcomeModal />
+      </div>
+    </CategoryContext.Provider>
   );
 }
 

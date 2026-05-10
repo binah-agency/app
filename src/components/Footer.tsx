@@ -1,19 +1,47 @@
 import { Instagram, Facebook, ArrowUp } from 'lucide-react';
 import { COMPANY, CONTACT, FOOTER_LINKS } from '../constants/contact';
 
-export default function Footer() {
+interface FooterProps {
+  id?: string;
+}
+
+export default function Footer({ id }: FooterProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      <footer className="bg-black pt-16 lg:pt-20 pb-8 lg:pb-10" role="contentinfo">
+      <footer id={id} className="bg-black pt-16 lg:pt-20 pb-8 lg:pb-10" role="contentinfo">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-12 lg:mb-16">
-            <span className="font-display text-2xl lg:text-3xl text-white tracking-[3px]">
-              {COMPANY.name}
-            </span>
+            <div className="flex items-center gap-4">
+              <svg
+                viewBox="0 0 541 541"
+                className="h-12 w-auto text-brand-secondary"
+                aria-label="Virus Jeans Logo"
+              >
+                <polygon
+                  fill="currentColor"
+                  points="280.21 71.91 519.73 71.9 268.54 500.48 175.53 337.65 228.45 244.76 231.12 245.57 271.13 313.37 355.31 165.78 280.21 165.78 280.21 71.91"
+                />
+                <path
+                  fill="currentColor"
+                  d="M263.38,93.27l-201.97-1.29,116.29,204.25c1.51,5.98-9.99,18.83-12.06,24.9L21.27,69.97h240.17l1.94,1.94v21.36Z"
+                />
+                <path
+                  fill="currentColor"
+                  d="M263.38,104.92v24.6H123.55l74.88,131.75c.68,1.54.07,2.71-.44,4.13-.58,1.63-11.86,20.21-12.94,20.78L82.13,103.64l181.26,1.29Z"
+                />
+                <path
+                  fill="currentColor"
+                  d="M263.38,142.47v23.3h-74.45c-.39,0-1.81-1.8-3.23-1.29l33.7,61.59-13.64,23.84-61.49-108.73,119.11,1.29Z"
+                />
+              </svg>
+              <span className="font-display text-2xl lg:text-3xl text-white tracking-[3px]">
+                {COMPANY.name}
+              </span>
+            </div>
             <div className="flex gap-6">
               <a 
                 href="#" 
@@ -128,7 +156,7 @@ export default function Footer() {
       </footer>
       <button
         onClick={scrollToTop}
-        className="fixed bottom-36 right-6 z-50 flex items-center justify-center w-12 h-12 bg-brand-navy text-white hover:bg-brand-navyLight rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-all duration-300"
+        className="fixed bottom-24 right-6 z-50 flex items-center justify-center w-14 h-14 bg-orange-500 text-white hover:bg-orange-600 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400 transition-all duration-300"
         aria-label="Volver arriba"
       >
         <ArrowUp size={20} aria-hidden="true" />

@@ -135,7 +135,7 @@ export default function WelcomeModal() {
             <div className="p-8">
               <button
                 onClick={handleSpinToRewards}
-                className="group w-full bg-brand-secondary text-brand-navy py-5 px-6 rounded-2xl font-accent text-base font-bold uppercase tracking-[1px] hover:bg-yellow-400 transition-all duration-300 hover:scale-[1.02] shadow-lg flex items-center justify-center gap-3"
+                className="group w-full bg-brand-secondary text-white py-5 px-6 rounded-2xl font-accent text-base font-bold uppercase tracking-[1px] hover:bg-yellow-400 hover:text-brand-navy transition-all duration-300 hover:scale-[1.02] shadow-lg flex items-center justify-center gap-3"
               >
                 <span>RECLAMAR MIS RECOMPENSAS</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -220,7 +220,7 @@ export default function WelcomeModal() {
                 disabled={!selectedReward}
                 className={`relative w-full mt-6 py-5 px-6 rounded-2xl font-accent text-base font-bold uppercase tracking-[1px] transition-all duration-300 overflow-hidden ${
                   selectedReward
-                    ? 'bg-brand-secondary text-brand-navy hover:bg-yellow-400 shadow-lg hover:scale-[1.02]'
+                    ? 'bg-brand-secondary text-white hover:bg-yellow-400 hover:text-brand-navy shadow-lg hover:scale-[1.02]'
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}
               >

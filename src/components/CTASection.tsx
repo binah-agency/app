@@ -3,12 +3,16 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CONTACT } from '../constants/contact';
 
+interface CTASectionProps {
+  id?: string;
+}
+
 const checkReducedMotion = (): boolean => {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function CTASection() {
+export default function CTASection({ id }: CTASectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
 
@@ -42,7 +46,7 @@ export default function CTASection() {
   }, []);
 
   return (
-    <section id="catalogo" data-contacto ref={sectionRef} className="gradient-mesh py-20 lg:py-28 text-center">
+    <section id={id || 'catalogo'} data-contacto ref={sectionRef} className="gradient-mesh py-20 lg:py-28 text-center">
       <div className="max-w-[900px] mx-auto px-6">
         <h2 className="cta-animate font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white mb-4">
           ¿LISTOS PARA ESTOQUEAR

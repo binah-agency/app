@@ -3,6 +3,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CONTACT } from '../constants/contact';
 
+interface TestimonialsProps {
+  id?: string;
+}
+
 interface Testimonial {
   id: string;
   quote: string;
@@ -39,7 +43,7 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function Testimonials() {
+export default function Testimonials({ id }: TestimonialsProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
 
@@ -73,7 +77,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-brand-secondary py-20 lg:py-28">
+    <section id={id || 'testimonios'} ref={sectionRef} className="bg-brand-secondary py-20 lg:py-28">
       <div className="max-w-[1200px] mx-auto px-6">
         <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white text-center mb-12 lg:mb-16">
           LO QUE DICEN NUESTROS SOCIOS

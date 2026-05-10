@@ -13,6 +13,11 @@ interface CategoryData {
   [key: string]: CategoryItem[];
 }
 
+interface CategoryTabsProps {
+  initialCategory?: string;
+  onCategoryChange?: (category: string) => void;
+}
+
 const tabs = ['HOMBRE', 'MUJER', 'NIÑOS', 'DEPORTIVO'] as const;
 
 const categoryData: CategoryData = {
@@ -47,12 +52,18 @@ const checkReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function CategoryTabs() {
-  const [activeTab, setActiveTab] = useState<typeof tabs[number]>('HOMBRE');
+export default function CategoryTabs({ initialCategory, onCategoryChange }: CategoryTabsProps) {
+  const [activeTab, setActiveTab] = useState<typeof tabs[number]>(initialCategory as typeof tabs[number] || 'HOMBRE');
   const [selectedCategory, setSelectedCategory] = useState<CategoryItem | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useRef(checkReducedMotion());
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => {
+    if (initialCategory && tabs.includes(initialCategory as typeof tabs[number])) {
+      setActiveTab(initialCategory as typeof tabs[number]);
+    }
+  }, [initialCategory]);
 
   const handleTabChange = useCallback((tab: typeof tabs[number]) => {
     if (tab === activeTab) return;
@@ -60,6 +71,7 @@ export default function CategoryTabs() {
     const grid = gridRef.current;
     if (!grid || prefersReducedMotion.current) {
       setActiveTab(tab);
+      onCategoryChange?.(tab);
       return;
     }
 
@@ -71,9 +83,10 @@ export default function CategoryTabs() {
       duration: 0.2,
       onComplete: () => {
         setActiveTab(tab);
+        onCategoryChange?.(tab);
       },
     });
-  }, [activeTab]);
+  }, [activeTab, onCategoryChange]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
     let newIndex = index;

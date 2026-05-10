@@ -2,12 +2,16 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import HeroCarousel from './HeroCarousel';
 
+interface HeroProps {
+  id?: string;
+}
+
 const checkReducedMotion = (): boolean => {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
-export default function Hero() {
+export default function Hero({ id }: HeroProps) {
   const prefersReducedMotion = useRef(checkReducedMotion());
 
   useEffect(() => {
@@ -32,7 +36,7 @@ export default function Hero() {
     <section 
       className="min-h-screen relative z-10" 
       aria-label="Hero principal"
-      id="hero"
+      id={id || 'hero'}
     >
       <HeroCarousel />
     </section>

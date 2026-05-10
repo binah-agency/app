@@ -72,7 +72,9 @@ export default function CTASection({ id }: CTASectionProps) {
             Contactar por WhatsApp
           </a>
           <a
-            href="#catalogo"
+            href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Me interesa mucho descargar la lista de precios completa. ¿Me la pueden enviar o indicarme cómo acceder a ella?')}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-10 py-4 font-accent text-sm font-medium uppercase tracking-[1.5px] hover:bg-white hover:text-brand-navy focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-navy transition-all duration-300 rounded-full"
           >
             Descargar Lista de Precios

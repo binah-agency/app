@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { X, MessageCircle } from 'lucide-react';
+import { CONTACT } from '../constants/contact';
 
 interface ExitIntentModalProps {
   children?: React.ReactNode;
@@ -77,7 +78,7 @@ export default function ExitIntentModal({ children }: ExitIntentModalProps) {
             </p>
 
             <a
-              href="https://wa.me/584120410493"
+              href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Estuve viendo la página de Virus Jeans y me interesa mucho conocer más sobre los productos al por mayor. ¿Pueden orientarme sobre los precios y condiciones?')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 w-full bg-[#25D366] text-white py-4 px-6 rounded-xl font-accent text-sm font-medium uppercase tracking-[1px] hover:bg-[#128C7E] transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl"

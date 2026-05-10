@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { CONTACT } from '../constants/contact';
 
 interface FAQSectionProps {
   id?: string;
@@ -122,7 +123,7 @@ export default function FAQSection({ id }: FAQSectionProps) {
             ¿No encontraste lo que buscabas?
           </p>
           <a
-            href="https://wa.me/584120410493"
+            href={`${CONTACT.whatsapp}?text=${encodeURIComponent('¡Hola! Estuve revisando las preguntas frecuentes de la página y no encontré lo que buscaba. ¿Podrían ayudarme con una consulta?')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 font-accent text-sm font-medium uppercase tracking-[1.5px] hover:bg-[#128C7E] transition-colors duration-300 rounded-full"

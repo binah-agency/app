@@ -70,7 +70,7 @@ export default function WelcomeModal() {
     if (selectedReward) {
       setStep('success');
       const reward = rewards.find(r => r.id === selectedReward);
-      const message = `Hola! Quiero reclamar mi reward: ${reward?.title}. Me interesa conocer más sobre ${reward?.description}`;
+      const message = `¡Hola! Acabo de ver el popup de bienvenida de la página y quiero reclamar mi reward: ${reward?.title}. Me encantaría que me cuenten más sobre cómo puedo acceder a ${reward?.description}. ¿Qué pasos debo seguir?`;
       setTimeout(() => {
         window.open(`${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
         setIsOpen(false);

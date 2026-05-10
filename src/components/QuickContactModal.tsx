@@ -1,12 +1,27 @@
 import { useState, useEffect } from 'react';
 import { X, Send, MessageCircle } from 'lucide-react';
+import { CONTACT } from '../constants/contact';
 
 const PRESET_MESSAGES = [
-  "Hola, me interesa conocer el catálogo de jeans",
-  "Quiero información sobre precios por mayoreo",
-  "¿Tienen disponible cierta referencia?",
+  "Hola, estoy viendo la página y me interesa mucho el catálogo de jeans que tienen",
+  "Hola, me gustaría conocer los precios por mayoreo para empezar a trabajar con ustedes",
+  "Hola, vi algunos modelos que me gustaron mucho, ¿tienen disponibilidad ahora?",
   "Otro motivo (escribir)",
 ];
+
+const getHumanizedMessage = (message: string): string => {
+  const intro = "¡Hola! Estoy visitando la página de Virus Jeans y me gustaría ";
+  
+  if (message.includes("catálogo")) {
+    return intro + "ver el catálogo completo de jeans que tienen disponible. ¿Me podrían mostrar las opciones que tienen?";
+  } else if (message.includes("precios")) {
+    return intro + "información sobre los precios por mayoreo. ¿Cuántas piezas necesito comprar y cuáles son los descuentos por volumen?";
+  } else if (message.includes("disponibilidad")) {
+    return intro + "saber si tienen disponibles algunos modelos que vi en la página. ¿Pueden confirmarme el stock?";
+  } else {
+    return intro + "contactarlos para resolver una consulta: " + message;
+  }
+};
 
 export default function QuickContactModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +53,8 @@ export default function QuickContactModal() {
       : selectedPreset;
     
     if (message) {
-      const whatsappUrl = `https://wa.me/15552345678?text=${encodeURIComponent(message || 'Hola, necesito información')}`;
+      const finalMessage = getHumanizedMessage(message);
+      const whatsappUrl = `${CONTACT.whatsapp}?text=${encodeURIComponent(finalMessage)}`;
       window.open(whatsappUrl, '_blank');
       setIsOpen(false);
       setCustomMessage('');

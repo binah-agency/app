@@ -128,7 +128,7 @@ export default function Footer() {
       </footer>
       <button
         onClick={scrollToTop}
-        className="fixed bottom-28 right-4 z-50 flex items-center justify-center w-14 h-14 bg-[#FF6B35] text-white hover:bg-[#e85a28] rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-all duration-300"
+        className="fixed bottom-24 right-4 z-50 flex items-center justify-center w-14 h-14 bg-[#FF6B35] text-white hover:bg-[#e85a28] rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-secondary transition-all duration-300"
         aria-label="Volver arriba"
       >
         <ArrowUp size={22} aria-hidden="true" />

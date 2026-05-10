@@ -14,10 +14,8 @@ interface Product {
   minOrder: string;
   image: string;
   isNew: boolean;
-}
-
-interface ProductShowcaseProps {
-  id?: string;
+  stock?: string;
+  isLowStock?: boolean;
 }
 
 const products: Product[] = [
@@ -28,6 +26,8 @@ const products: Product[] = [
     minOrder: 'Min. 24 unidades',
     image: '/images/product-1.jpg',
     isNew: true,
+    stock: '152 unidades',
+    isLowStock: false,
   },
   {
     id: 'straight-leg',
@@ -36,6 +36,8 @@ const products: Product[] = [
     minOrder: 'Min. 24 unidades',
     image: '/images/product-2.jpg',
     isNew: false,
+    stock: '8 unidades',
+    isLowStock: true,
   },
   {
     id: 'black-skinny',
@@ -44,6 +46,8 @@ const products: Product[] = [
     minOrder: 'Min. 24 unidades',
     image: '/images/product-3.jpg',
     isNew: true,
+    stock: '43 unidades',
+    isLowStock: false,
   },
   {
     id: 'distressed-blue',
@@ -52,6 +56,8 @@ const products: Product[] = [
     minOrder: 'Min. 24 unidades',
     image: '/images/product-4.jpg',
     isNew: false,
+    stock: '5 unidades',
+    isLowStock: true,
   },
 ];
 
@@ -150,6 +156,18 @@ export default function ProductShowcase({ id }: ProductShowcaseProps) {
                     NUEVO
                   </span>
                 )}
+                {product.stock && (
+                  <span 
+                    className={`absolute top-3 right-3 px-2 py-1 font-accent text-[10px] font-semibold uppercase tracking-[1px] rounded-full ${
+                      product.isLowStock 
+                        ? 'bg-red-500 text-white animate-pulse' 
+                        : 'bg-green-500 text-white'
+                    }`}
+                    aria-label={product.isLowStock ? 'Poco stock' : 'Disponible'}
+                  >
+                    {product.isLowStock ? '¡Últimas!' : 'Disponible'}
+                  </span>
+                )}
                 <button
                   type="button"
                   className="absolute bottom-0 left-0 right-0 bg-brand-navy text-white py-3 font-accent text-[13px] font-medium uppercase text-center lg:translate-y-full lg:group-hover:translate-y-0 lg:group-focus-within:translate-y-0 lg:group-active:translate-y-0 lg:transition-transform lg:duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-inset touch-manipulation no-tap-highlight rounded-tl-[0.5rem] rounded-tr-[0.5rem] px-1"
@@ -191,6 +209,8 @@ export default function ProductShowcase({ id }: ProductShowcaseProps) {
           price={selectedProduct.price}
           minOrder={selectedProduct.minOrder}
           badge={selectedProduct.isNew ? 'NUEVO' : undefined}
+          stock={selectedProduct.stock}
+          isLowStock={selectedProduct.isLowStock}
           ctaText="Agregar a Cotización"
         />
       )}

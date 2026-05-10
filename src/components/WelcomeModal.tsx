@@ -38,7 +38,7 @@ function Isotipo() {
   return (
     <svg 
       viewBox="0 0 100 100" 
-      className="w-16 h-16"
+      className="w-16 h-16 text-white"
       fill="currentColor"
     >
       <polygon points="51.5,13.2 95.3,13.2 49.1,91.8 32.1,61.6 41.8,44.6 42.3,44.8 49.6,57.1 65,30.2 51.5,30.2 51.5,13.2"/>
@@ -96,7 +96,7 @@ export default function WelcomeModal() {
         onClick={() => setIsOpen(false)}
       />
       
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-300">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-[95vw] sm:max-w-lg md:max-w-2xl lg:max-w-3xl overflow-hidden animate-in fade-in zoom-in-95 duration-300">
         <button
           onClick={() => setIsOpen(false)}
           className="absolute top-3 right-3 p-2 text-white/70 hover:text-white transition-colors rounded-full hover:bg-white/10 z-20"
@@ -135,7 +135,7 @@ export default function WelcomeModal() {
             <div className="p-8">
               <button
                 onClick={handleSpinToRewards}
-                className="group w-full bg-brand-secondary text-brand-navy py-5 px-6 rounded-2xl font-accent text-base font-bold uppercase tracking-[1px] hover:bg-yellow-400 transition-all duration-300 hover:scale-[1.02] shadow-lg flex items-center justify-center gap-3"
+                className="group w-full bg-brand-navy text-white py-5 px-6 rounded-2xl font-accent text-base font-bold uppercase tracking-[1px] hover:bg-brand-navyLight transition-all duration-300 hover:scale-[1.02] shadow-lg flex items-center justify-center gap-3"
               >
                 <span>RECLAMAR MIS RECOMPENSAS</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -165,16 +165,16 @@ export default function WelcomeModal() {
               </p>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {rewards.map((reward) => (
                 <button
                   key={reward.id}
                   onClick={() => setSelectedReward(reward.id)}
                   onMouseEnter={() => setHoveredReward(reward.id)}
                   onMouseLeave={() => setHoveredReward(null)}
-                  className={`group relative w-full p-5 rounded-2xl border-2 transition-all duration-300 text-left overflow-hidden ${
+                  className={`group relative p-4 sm:p-5 rounded-2xl border-2 transition-all duration-300 text-left overflow-hidden ${
                     selectedReward === reward.id
-                      ? 'border-brand-secondary shadow-lg scale-[1.02]'
+                      ? 'border-brand-navy shadow-lg bg-brand-navy/5'
                       : hoveredReward === reward.id
                         ? 'border-gray-300 shadow-md'
                         : 'border-gray-100'
@@ -220,7 +220,7 @@ export default function WelcomeModal() {
                 disabled={!selectedReward}
                 className={`relative w-full mt-6 py-5 px-6 rounded-2xl font-accent text-base font-bold uppercase tracking-[1px] transition-all duration-300 overflow-hidden ${
                   selectedReward
-                    ? 'bg-brand-secondary text-brand-navy hover:bg-yellow-400 shadow-lg hover:scale-[1.02]'
+                    ? 'bg-brand-navy text-white hover:bg-brand-navyLight shadow-lg hover:scale-[1.02]'
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}
               >

@@ -75,30 +75,55 @@ const sectionBanners: Record<string, BannerConfig[]> = {
 
 export default function DynamicBanner() {
   const [activeBanner, setActiveBanner] = useState<BannerConfig | null>(null);
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const cooldownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastDismissRef = useRef<number>(0);
 
   const COOLDOWN_MS = 180000;
 
+  const getDismissedSections = (): Record<string, number> => {
+    try {
+      const stored = localStorage.getItem('dismissedBannerSections');
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  };
+
+  const isSectionDismissed = (sectionId: string): boolean => {
+    const dismissed = getDismissedSections();
+    const dismissedTime = dismissed[sectionId];
+    if (!dismissedTime) return false;
+    return Date.now() - dismissedTime < COOLDOWN_MS;
+  };
+
+  const dismissSection = (sectionId: string) => {
+    try {
+      const dismissed = getDismissedSections();
+      dismissed[sectionId] = Date.now();
+      localStorage.setItem('dismissedBannerSections', JSON.stringify(dismissed));
+    } catch {
+      console.warn('Could not save banner dismissal state');
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      if (Date.now() - lastDismissRef.current < COOLDOWN_MS) return;
-
       const scrollPosition = window.scrollY + window.innerHeight / 3;
       let foundSection = false;
 
       for (const [sectionId, banners] of Object.entries(sectionBanners)) {
         if (sectionId === 'hero') continue;
         
+        if (isSectionDismissed(sectionId)) continue;
+        
         const element = document.getElementById(sectionId);
         if (element) {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             if (banners.length > 0) {
+              setActiveSectionId(sectionId);
               setActiveBanner(banners[Math.floor(Math.random() * banners.length)]);
-              setIsDismissed(false);
               setTimeout(() => setIsVisible(true), 100);
               foundSection = true;
             }
@@ -110,6 +135,7 @@ export default function DynamicBanner() {
       if (!foundSection) {
         setIsVisible(false);
         setActiveBanner(null);
+        setActiveSectionId(null);
       }
     };
 
@@ -119,20 +145,15 @@ export default function DynamicBanner() {
   }, []);
 
   const handleDismiss = () => {
-    setIsDismissed(true);
-    setIsVisible(false);
-    lastDismissRef.current = Date.now();
-    
-    if (cooldownRef.current) {
-      clearTimeout(cooldownRef.current);
+    if (activeSectionId) {
+      dismissSection(activeSectionId);
     }
-    
-    cooldownRef.current = setTimeout(() => {
-      lastDismissRef.current = 0;
-    }, COOLDOWN_MS);
+    setIsVisible(false);
+    setActiveBanner(null);
+    setActiveSectionId(null);
   };
 
-  if (!isVisible || !activeBanner || isDismissed) {
+  if (!isVisible || !activeBanner || (activeSectionId && isSectionDismissed(activeSectionId))) {
     return null;
   }
 

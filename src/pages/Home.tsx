@@ -83,11 +83,11 @@ export function Home() {
       <main id="main-content" ref={mainRef}>
         <Hero />
         <OurBrands />
-        <ParallaxGallery />
-        <CategoryTabs />
         <FeaturesBanner />
         <div className="h-px bg-gradient-to-r from-transparent via-brand-secondary/30 to-transparent" />
         <ProductShowcase />
+        <CategoryTabs />
+        <ParallaxGallery />
         <AboutSection />
         <Testimonials />
         <CTASection />

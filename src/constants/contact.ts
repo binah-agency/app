@@ -17,14 +17,17 @@ export const COMPANY = {
   retailPartners: '500+',
 };
 
+export const CATEGORIES = ['HOMBRE', 'MUJER', 'NIÑOS', 'DEPORTIVO'] as const;
+export type CategoryType = typeof CATEGORIES[number];
+
 export const NAV_LINKS = [
-  { label: 'HOMBRE', href: '#categorias' },
-  { label: 'MUJER', href: '#categorias' },
-  { label: 'NIÑOS', href: '#categorias' },
-  { label: 'DEPORTIVO', href: '#categorias' },
-  { label: 'NOVEDADES', href: '#productos' },
-  { label: 'CATÁLOGO', href: '#catalogo' },
-] as const;
+  { label: 'HOMBRE', href: '#categorias', category: 'HOMBRE' as const },
+  { label: 'MUJER', href: '#categorias', category: 'MUJER' as const },
+  { label: 'NIÑOS', href: '#categorias', category: 'NIÑOS' as const },
+  { label: 'DEPORTIVO', href: '#categorias', category: 'DEPORTIVO' as const },
+  { label: 'NOVEDADES', href: '#productos', category: null },
+  { label: 'CATÁLOGO', href: '#catalogo', category: null },
+];
 
 export type NavLink = typeof NAV_LINKS[number];
 
@@ -44,7 +47,7 @@ export const FOOTER_LINKS = {
   ],
   support: [
     { label: 'Contáctanos', href: '#catalogo' },
-    { label: 'Preguntas Frecuentes', href: '#catalogo' },
+    { label: 'Preguntas Frecuentes', href: '#faq' },
     { label: 'Información de Envío', href: '#catalogo' },
     { label: 'Política de Devoluciones', href: '#catalogo' },
   ],

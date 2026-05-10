@@ -3,6 +3,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { X } from 'lucide-react';
 
+interface ProductShowcaseProps {
+  id?: string;
+}
+
 interface Product {
   id: string;
   name: string;

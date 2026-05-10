@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+interface FeaturesBannerProps {
+  id?: string;
+}
+
 interface Feature {
   id: string;
   icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;

@@ -72,8 +72,8 @@ export default function AboutSection({ id }: AboutSectionProps) {
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           <div className="about-left w-full lg:w-[45%]">
             <img
-              src="/images/about-factory.jpg"
-              alt="Nuestra fábrica de denim"
+              src="/images/about-hero.jpg"
+              alt="Virus Jeans - Tu proveedor de confianza"
               loading="lazy"
               className="w-full aspect-[4/5] object-cover rounded-2xl"
             />

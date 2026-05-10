@@ -12,6 +12,7 @@ import AboutSection from '../components/AboutSection';
 import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
 import FAQSection from '../components/FAQSection';
+import DynamicBanner from '../components/DynamicBanner';
 import Footer from '../components/Footer';
 import ExitIntentModal from '../components/ExitIntentModal';
 import NewsletterModal from '../components/NewsletterModal';
@@ -78,6 +79,7 @@ export function Home() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Navbar />
+      <DynamicBanner />
       <main id="main-content" ref={mainRef}>
         <Hero />
         <OurBrands />

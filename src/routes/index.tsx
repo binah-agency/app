@@ -503,4 +503,3 @@ function Footer() {
   );
 }
 
-{/* Floating WhatsApp button */}

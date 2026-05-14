@@ -40,69 +40,76 @@ function Index() {
   useEffect(() => {
     const mm = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.set(".hero-badge, .hero-heading, .hero-desc, .hero-cta, .hero-stats, .hero-img, .reveal, .reveal-img", { willChange: "transform, opacity" });
-      gsap.set(".marquee-track", { willChange: "transform" });
-
-      const heroTl = gsap.timeline({ defaults: { duration: 0.8, ease: "power3.out" } });
-      heroTl
-        .from(".hero-badge", { y: -20, rotation: -5, autoAlpha: 0 })
-        .from(".hero-heading", { y: 50, autoAlpha: 0 }, "-=0.4")
-        .from(".hero-desc", { y: 30, autoAlpha: 0 }, "-=0.3")
-        .from(".hero-cta", { y: 20, autoAlpha: 0 }, "-=0.2")
-        .from(".hero-stats", { y: 20, autoAlpha: 0 }, "-=0.15");
-      gsap.from(".hero-img", {
-        scale: 1.1,
-        opacity: 0,
-        duration: 1.4,
-        ease: "power3.out",
-      });
-
-      // Marquee infinito
-      const marquee = gsap.to(".marquee-track", {
-        xPercent: -50,
-        ease: "none",
-        duration: 25,
-        repeat: -1,
-        force3D: true,
-      });
-
-      // Pausar marquee en hover
-      const marqueeEl = document.querySelector(".marquee-track");
-      if (marqueeEl) {
-        marqueeEl.addEventListener("mouseenter", () => marquee.pause());
-        marqueeEl.addEventListener("mouseleave", () => marquee.resume());
-      }
-
-      gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => {
-        gsap.from(el, {
-          y: 50,
-          autoAlpha: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 85%" },
-        });
-      });
-
-      gsap.utils.toArray<HTMLElement>(".reveal-img").forEach((el) => {
-        gsap.from(el, {
-          scale: 1.15,
-          autoAlpha: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 85%" },
-        });
-      });
-
-      // Botón WhatsApp click feedback
-      gsap.utils.toArray<HTMLElement>('a[href*="wa.me"]').forEach((btn) => {
-        btn.addEventListener("mousedown", () => gsap.to(btn, { scale: 0.95, duration: 0.1 }));
-        btn.addEventListener("mouseup", () =>
-          gsap.to(btn, { scale: 1, duration: 0.15, ease: "back.out(2)" }),
+    mm.add(
+      "(prefers-reduced-motion: no-preference)",
+      () => {
+        gsap.set(
+          ".hero-badge, .hero-heading, .hero-desc, .hero-cta, .hero-stats, .hero-img, .reveal, .reveal-img",
+          { willChange: "transform, opacity" },
         );
-        btn.addEventListener("mouseleave", () => gsap.to(btn, { scale: 1, duration: 0.15 }));
-      });
-    }, root);
+        gsap.set(".marquee-track", { willChange: "transform" });
+
+        const heroTl = gsap.timeline({ defaults: { duration: 0.8, ease: "power3.out" } });
+        heroTl
+          .from(".hero-badge", { y: -20, rotation: -5, autoAlpha: 0 })
+          .from(".hero-heading", { y: 50, autoAlpha: 0 }, "-=0.4")
+          .from(".hero-desc", { y: 30, autoAlpha: 0 }, "-=0.3")
+          .from(".hero-cta", { y: 20, autoAlpha: 0 }, "-=0.2")
+          .from(".hero-stats", { y: 20, autoAlpha: 0 }, "-=0.15");
+        gsap.from(".hero-img", {
+          scale: 1.1,
+          opacity: 0,
+          duration: 1.4,
+          ease: "power3.out",
+        });
+
+        // Marquee infinito
+        const marquee = gsap.to(".marquee-track", {
+          xPercent: -50,
+          ease: "none",
+          duration: 25,
+          repeat: -1,
+          force3D: true,
+        });
+
+        // Pausar marquee en hover
+        const marqueeEl = document.querySelector(".marquee-track");
+        if (marqueeEl) {
+          marqueeEl.addEventListener("mouseenter", () => marquee.pause());
+          marqueeEl.addEventListener("mouseleave", () => marquee.resume());
+        }
+
+        gsap.utils.toArray<HTMLElement>(".reveal").forEach((el) => {
+          gsap.from(el, {
+            y: 50,
+            autoAlpha: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%" },
+          });
+        });
+
+        gsap.utils.toArray<HTMLElement>(".reveal-img").forEach((el) => {
+          gsap.from(el, {
+            scale: 1.15,
+            autoAlpha: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%" },
+          });
+        });
+
+        // Botón WhatsApp click feedback
+        gsap.utils.toArray<HTMLElement>('a[href*="wa.me"]').forEach((btn) => {
+          btn.addEventListener("mousedown", () => gsap.to(btn, { scale: 0.95, duration: 0.1 }));
+          btn.addEventListener("mouseup", () =>
+            gsap.to(btn, { scale: 1, duration: 0.15, ease: "back.out(2)" }),
+          );
+          btn.addEventListener("mouseleave", () => gsap.to(btn, { scale: 1, duration: 0.15 }));
+        });
+      },
+      root,
+    );
 
     return () => mm.revert();
   }, []);
@@ -140,7 +147,12 @@ function Header() {
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2.5">
-          <img src={LOGO} alt="Virus Jeans" className="h-9 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
+          <img
+            src={LOGO}
+            alt="Virus Jeans"
+            className="h-9 w-auto"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
           <span className="font-[Archivo_Black,sans-serif] text-lg tracking-wider hidden sm:block">
             VIRUS<span className="text-brand-light">JEANS</span>
           </span>
@@ -362,10 +374,34 @@ function Marquee() {
 
 function Categories() {
   const cats = [
-    { name: "Jeans", desc: "Hombre y mujer", icon: Shirt, count: "200+ modelos", img: "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400&q=80" },
-    { name: "Camisas", desc: "Casual y formal", icon: ShoppingBag, count: "150+ diseños", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&q=80" },
-    { name: "Franelas", desc: "Premium quality", icon: Sparkles, count: "120+ estilos", img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80" },
-    { name: "Accesorios", desc: "Complementa tu look", icon: Star, count: "80+ piezas", img: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&q=80" },
+    {
+      name: "Jeans",
+      desc: "Hombre y mujer",
+      icon: Shirt,
+      count: "200+ modelos",
+      img: "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?w=400&q=80",
+    },
+    {
+      name: "Camisas",
+      desc: "Casual y formal",
+      icon: ShoppingBag,
+      count: "150+ diseños",
+      img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&q=80",
+    },
+    {
+      name: "Franelas",
+      desc: "Premium quality",
+      icon: Sparkles,
+      count: "120+ estilos",
+      img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80",
+    },
+    {
+      name: "Accesorios",
+      desc: "Complementa tu look",
+      icon: Star,
+      count: "80+ piezas",
+      img: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&q=80",
+    },
   ];
   return (
     <section id="categorias" className="py-24 px-5 md:px-8">
@@ -587,7 +623,7 @@ function Visit() {
             Te esperamos en <span className="text-brand-light">Valencia</span>
           </h2>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 @md:grid-cols-3 gap-5">
           {[
             {
               icon: MapPin,
@@ -597,23 +633,57 @@ function Visit() {
                 "Local Lote L-28, Barrio El Terminal",
                 "Valencia, Carabobo 2003",
               ],
+              action: {
+                href: "https://maps.google.com/?q=Calle+93+Niro+Cívico+91-75+Valencia",
+                label: "Abrir en Google Maps",
+              },
             },
-            { icon: Phone, title: "Teléfono", lines: ["+58 424 421 0696", "Pedidos por WhatsApp"] },
-            { icon: Clock, title: "Horario", lines: ["Lun – Sáb", "9:00 am – 5:00 pm"] },
+            {
+              icon: Phone,
+              title: "Teléfono",
+              lines: ["+58 424 421 0696", "Pedidos por WhatsApp"],
+              action: {
+                href: "tel:+584244210696",
+                label: "Llamar ahora",
+              },
+            },
+            {
+              icon: Clock,
+              title: "Horario",
+              lines: ["Lun – Sáb", "9:00 am – 5:00 pm"],
+              action: null,
+            },
           ].map((c) => (
             <div
               key={c.title}
-              className="reveal p-7 rounded-2xl border border-border bg-surface/50"
+              className="reveal group p-5 rounded-2xl border border-border bg-gradient-to-br from-surface/50 to-surface/20 hover:border-brand-light/40 transition-colors"
             >
-              <div className="w-12 h-12 rounded-xl bg-brand/20 grid place-items-center mb-5">
-                <c.icon className="w-5 h-5 text-brand-light" />
+              <div className="flex items-start gap-4 @md:gap-5">
+                <div className="w-10 h-10 @md:w-12 @md:h-12 rounded-xl bg-brand/20 grid place-items-center shrink-0 group-hover:bg-brand/30 transition-colors">
+                  <c.icon className="w-4 h-4 @md:w-5 @md:h-5 text-brand-light" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-[Archivo_Black,sans-serif] text-lg @md:text-xl uppercase mb-1">
+                    {c.title}
+                  </h3>
+                  {c.lines.map((l) => (
+                    <p key={l} className="text-muted-foreground text-sm leading-relaxed">
+                      {l}
+                    </p>
+                  ))}
+                  {c.action && (
+                    <a
+                      href={c.action.href}
+                      target={c.action.href.startsWith("http") ? "_blank" : undefined}
+                      rel={c.action.href.startsWith("http") ? "noopener" : undefined}
+                      className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-brand-light hover:text-brand-light/80 transition-colors"
+                    >
+                      {c.action.label}
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  )}
+                </div>
               </div>
-              <h3 className="font-[Archivo_Black,sans-serif] text-xl uppercase mb-3">{c.title}</h3>
-              {c.lines.map((l) => (
-                <p key={l} className="text-muted-foreground">
-                  {l}
-                </p>
-              ))}
             </div>
           ))}
         </div>
@@ -667,7 +737,13 @@ function Footer() {
       <div className="@container max-w-7xl mx-auto grid grid-cols-2 @lg:grid-cols-4 gap-10">
         <div className="col-span-2 @lg:col-span-2">
           <div className="flex items-center gap-3 mb-4">
-            <img src={LOGO} alt="Virus Jeans" className="h-10 w-auto" style={{ filter: "brightness(0) invert(1)" }} loading="lazy" />
+            <img
+              src={LOGO}
+              alt="Virus Jeans"
+              className="h-10 w-auto"
+              style={{ filter: "brightness(0) invert(1)" }}
+              loading="lazy"
+            />
             <span className="font-[Archivo_Black,sans-serif] text-xl tracking-wider">
               VIRUS<span className="text-brand-light">JEANS</span>
             </span>

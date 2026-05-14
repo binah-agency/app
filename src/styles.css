@@ -186,6 +186,9 @@
 .img-reveal {
   animation: fadeIn 0.4s var(--ease-out) both;
 }
+.word {
+  display: inline-block;
+}
 
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {

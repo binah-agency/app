@@ -73,18 +73,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Virus Jeans, C.A. — Moda y Jeans al Mayor en Valencia, Venezuela" },
-      { name: "description", content: "Virus Jeans, C.A. — Tienda de jeans, ropa y moda al mayor y detal en Valencia, Carabobo. Calidad, estilo y los mejores precios. Pedidos por WhatsApp." },
-      { name: "keywords", content: "virus jeans, jeans valencia, ropa al mayor venezuela, moda carabobo, jeans hombre mujer, ropa al detal" },
+      {
+        name: "description",
+        content:
+          "Virus Jeans, C.A. — Tienda de jeans, ropa y moda al mayor y detal en Valencia, Carabobo. Calidad, estilo y los mejores precios. Pedidos por WhatsApp.",
+      },
+      {
+        name: "keywords",
+        content:
+          "virus jeans, jeans valencia, ropa al mayor venezuela, moda carabobo, jeans hombre mujer, ropa al detal",
+      },
       { name: "author", content: "Virus Jeans, C.A." },
       { name: "robots", content: "index, follow" },
       { name: "geo.region", content: "VE-G" },
       { name: "geo.placename", content: "Valencia, Carabobo" },
       { property: "og:title", content: "Virus Jeans, C.A. — Moda y Jeans al Mayor" },
-      { property: "og:description", content: "Tienda de jeans y moda en Valencia, Venezuela. Mayor y detal. Pedidos por WhatsApp." },
+      {
+        property: "og:description",
+        content:
+          "Tienda de jeans y moda en Valencia, Venezuela. Mayor y detal. Pedidos por WhatsApp.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Virus Jeans, C.A." },
       { property: "og:url", content: "https://cosmic-glow-spark.lovable.app" },
-      { property: "og:image", content: "https://img1.wsimg.com/isteam/ip/8d039810-0b99-40b7-a7f3-03e3cfec8e0e/AZUL_NEGRO%20M.%20Virus%20Jeans-04.png" },
+      {
+        property: "og:image",
+        content:
+          "https://img1.wsimg.com/isteam/ip/8d039810-0b99-40b7-a7f3-03e3cfec8e0e/AZUL_NEGRO%20M.%20Virus%20Jeans-04.png",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Virus Jeans, C.A." },
       { name: "twitter:description", content: "Moda y jeans al mayor en Valencia, Venezuela." },
@@ -94,7 +110,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "canonical", href: "https://cosmic-glow-spark.lovable.app" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap",
+      },
     ],
     scripts: [
       {
@@ -103,7 +122,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "ClothingStore",
           name: "Virus Jeans, C.A.",
-          image: "https://img1.wsimg.com/isteam/ip/8d039810-0b99-40b7-a7f3-03e3cfec8e0e/AZUL_NEGRO%20M.%20Virus%20Jeans-04.png",
+          image:
+            "https://img1.wsimg.com/isteam/ip/8d039810-0b99-40b7-a7f3-03e3cfec8e0e/AZUL_NEGRO%20M.%20Virus%20Jeans-04.png",
           telephone: "+584244210696",
           url: "https://cosmic-glow-spark.lovable.app",
           address: {

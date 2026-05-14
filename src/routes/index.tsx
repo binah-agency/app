@@ -44,18 +44,18 @@ function Index() {
       "(prefers-reduced-motion: no-preference)",
       () => {
         gsap.set(
-          ".hero-badge, .hero-heading, .hero-desc, .hero-cta, .hero-stats, .hero-img, .reveal, .reveal-img",
+          ".hero-badge, .hero-heading, .hero-desc, .hero-cta, .hero-stats, .hero-img, .reveal, .reveal-img, .hero-badge .word, .hero-heading .word",
           { willChange: "transform, opacity" },
         );
         gsap.set(".marquee-track", { willChange: "transform" });
 
-        const heroTl = gsap.timeline({ defaults: { duration: 0.8, ease: "power3.out" } });
+        const heroTl = gsap.timeline({ defaults: { duration: 0.5, ease: "power2.out" } });
         heroTl
-          .from(".hero-badge", { y: -20, rotation: -5, autoAlpha: 0 })
-          .from(".hero-heading", { y: 50, autoAlpha: 0 }, "-=0.4")
-          .from(".hero-desc", { y: 30, autoAlpha: 0 }, "-=0.3")
-          .from(".hero-cta", { y: 20, autoAlpha: 0 }, "-=0.2")
-          .from(".hero-stats", { y: 20, autoAlpha: 0 }, "-=0.15");
+          .from(".hero-badge .word", { y: -12, autoAlpha: 0, stagger: 0.05 })
+          .from(".hero-heading .word", { y: 25, autoAlpha: 0, stagger: 0.08 }, "-=0.2")
+          .from(".hero-desc", { y: 20, autoAlpha: 0 }, "-=0.15")
+          .from(".hero-cta", { y: 20, autoAlpha: 0 }, "-=0.1")
+          .from(".hero-stats", { y: 20, autoAlpha: 0 }, "-=0.1");
         gsap.from(".hero-img", {
           scale: 1.1,
           opacity: 0,
@@ -131,6 +131,20 @@ function Index() {
         <CTA />
       </main>
       <Footer />
+
+      <a
+        href={WHATSAPP}
+        target="_blank"
+        rel="noopener"
+        onClick={() => Analytics.whatsappClicked("floating")}
+        className="whatsapp-float group fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:bg-[#20BD5A] hover:scale-110 active:scale-95 transition-all flex items-center justify-center"
+        aria-label="Escríbenos por WhatsApp"
+      >
+        <MessageCircle className="w-6 h-6" />
+        <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-surface/90 text-sm font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-border">
+          ¡Escríbenos!
+        </span>
+      </a>
     </div>
   );
 }
@@ -145,41 +159,30 @@ function Header() {
   ];
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-background/70 border-b border-border">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5">
-          <img
-            src={LOGO}
-            alt="Virus Jeans"
-            className="h-9 w-auto"
-            style={{ filter: "brightness(0) invert(1)" }}
-          />
-          <span className="font-[Archivo_Black,sans-serif] text-lg tracking-wider hidden sm:block">
-            VIRUS<span className="text-brand-light">JEANS</span>
-          </span>
-        </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => Analytics.navigationClicked(item.id)}
-              className="hover:text-brand-light transition"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener"
-            onClick={() => Analytics.whatsappClicked("header")}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand text-brand-foreground text-sm font-semibold hover:bg-brand-light transition"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span className="hidden sm:inline">WhatsApp</span>
+        <div className="max-w-7xl mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2.5">
+            <img
+              src={LOGO}
+              alt="Virus Jeans"
+              className="h-9 w-auto"
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
+            <span className="font-[Archivo_Black,sans-serif] text-lg tracking-wider hidden sm:block">
+              VIRUS<span className="text-brand-light">JEANS</span>
+            </span>
           </a>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium bg-surface/50 backdrop-blur-md rounded-xl p-2">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => Analytics.navigationClicked(item.id)}
+                className="hover:text-brand-light transition px-3 py-1.5 rounded"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
           <button
             className="md:hidden p-2 text-white hover:text-brand-light transition"
             onClick={() => setMenuOpen(true)}
@@ -189,11 +192,10 @@ function Header() {
             <Menu className="w-5 h-5" />
           </button>
         </div>
-      </div>
 
       {/* Drawer overlay */}
       <div
-        className={`fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 ease-out md:hidden ${
+        className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity duration-300 ease-out md:hidden ${
           menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
@@ -202,37 +204,47 @@ function Header() {
 
       {/* Drawer panel */}
       <div
-        className={`fixed top-0 right-0 h-full w-72 max-w-[80vw] z-50 bg-background border-l border-border shadow-2xl transform transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed top-0 right-0 h-full w-72 max-w-[80vw] z-50 bg-gradient-to-b from-[#0a0a0f] via-[#0d0d12] to-[#0f0f15] border-l border-border/50 shadow-2xl transform transition-transform duration-300 ease-out md:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-hidden={!menuOpen}
       >
-        <div className="flex items-center justify-between p-5 border-b border-border">
-          <span className="font-[Archivo_Black,sans-serif] text-sm uppercase tracking-widest text-muted-foreground">
-            Menú
+        <div className="flex items-center gap-3 p-5 border-b border-border">
+          <img src={LOGO} alt="Virus Jeans" className="h-8 w-auto" style={{ filter: "brightness(0) invert(1)" }} />
+          <span className="font-[Archivo_Black,sans-serif] text-sm tracking-wider text-foreground">
+            VIRUS<span className="text-brand-light">JEANS</span>
           </span>
           <button
             onClick={() => setMenuOpen(false)}
-            className="p-2 rounded-full hover:bg-surface transition-colors"
+            className="ml-auto p-2 rounded-full hover:bg-surface transition-colors"
             aria-label="Cerrar menú"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
-        <nav className="p-5 flex flex-col gap-2">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => {
-                setMenuOpen(false);
-                Analytics.navigationClicked(item.id);
-              }}
-              className="py-4 px-4 rounded-xl text-base font-medium hover:bg-surface hover:text-brand-light transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
+        <nav className="p-5 flex flex-col gap-1">
+          {navItems.map((item) => {
+            const icons: Record<string, React.ReactNode> = {
+              categorias: <Shirt className="w-4 h-4" />,
+              tienda: <ShoppingBag className="w-4 h-4" />,
+              nosotros: <Star className="w-4 h-4" />,
+              contacto: <Phone className="w-4 h-4" />,
+            };
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => {
+                  setMenuOpen(false);
+                  Analytics.navigationClicked(item.id);
+                }}
+                className="flex items-center gap-3 py-3.5 px-4 rounded-xl text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-surface transition-colors"
+              >
+                {icons[item.id]}
+                {item.label}
+              </a>
+            );
+          })}
           <hr className="my-3 border-border" />
           <a
             href={WHATSAPP}
@@ -262,15 +274,18 @@ function Hero() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6">
           <span className="hero-badge hero-fade inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-surface/60 text-xs font-medium">
-            <Sparkles className="w-3 h-3 text-brand-light" /> Mayor y Detal · Valencia, Venezuela
+            <Sparkles className="w-3 h-3 text-brand-light" />
+            <span className="word">Mayor</span> <span className="word">y</span> <span className="word">Detal</span>
+            <span className="word">·</span>
+            <span className="word">Valencia,</span> <span className="word">Venezuela</span>
           </span>
           <h1
             className="hero-heading hero-fade mt-6 font-[Archivo_Black,sans-serif] leading-[0.95] tracking-tight uppercase"
             style={{ fontSize: "clamp(2.5rem, 5vw + 1rem, 7rem)" }}
           >
-            Moda que <br />
-            <span className="text-brand-light">contagia</span> <br />
-            estilo.
+            <span className="word">Moda</span> <span className="word">que</span> <br />
+            <span className="word text-brand-light">contagia</span> <br />
+            <span className="word">estilo.</span>
           </h1>
           <p className="hero-desc hero-fade mt-6 text-lg text-muted-foreground max-w-lg">
             Jeans, ropa y accesorios al mejor precio. Calidad garantizada y las últimas tendencias
@@ -418,12 +433,12 @@ function Categories() {
             <span className="text-brand-light">vas a amar.</span>
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 @lg:grid-cols-4 gap-4">
           {cats.map((c) => (
             <div
               key={c.name}
               onClick={() => Analytics.categoryClicked(c.name)}
-              className="reveal group relative aspect-[4/5] @sm:aspect-[3/4] rounded-2xl overflow-hidden border border-border bg-surface hover:border-brand-light transition cursor-pointer"
+              className="reveal group relative aspect-[4/5] @md:aspect-[3/4] rounded-2xl overflow-hidden border border-border bg-surface hover:border-brand-light transition cursor-pointer"
             >
               <img
                 src={c.img}
@@ -535,14 +550,17 @@ function Benefits() {
   ];
   return (
     <section className="py-24 px-5 md:px-8">
-      <div className="@container max-w-7xl mx-auto grid grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-4 gap-4">
+      <div className="@container max-w-7xl mx-auto grid grid-cols-1 @md:grid-cols-2 @lg:grid-cols-4 gap-6">
         {items.map((b) => (
-          <div key={b.title} className="reveal p-6 rounded-2xl border border-border bg-surface/50">
-            <div className="w-12 h-12 rounded-xl bg-brand/20 grid place-items-center mb-5">
+          <div
+            key={b.title}
+            className="reveal p-8 rounded-2xl border border-border bg-surface/50 hover:border-brand-light/30 transition-colors"
+          >
+            <div className="w-12 h-12 rounded-xl bg-brand/20 grid place-items-center mb-6">
               <b.icon className="w-5 h-5 text-brand-light" />
             </div>
-            <h3 className="font-[Archivo_Black,sans-serif] text-lg uppercase mb-2">{b.title}</h3>
-            <p className="text-sm text-muted-foreground">{b.desc}</p>
+            <h3 className="font-[Archivo_Black,sans-serif] text-xl uppercase mb-3">{b.title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
           </div>
         ))}
       </div>

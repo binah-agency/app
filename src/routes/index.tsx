@@ -529,24 +529,25 @@ function Showcase() {
             Vive la <span className="text-brand-light">experiencia</span>
           </h2>
         </div>
-        <div className="grid grid-cols-12 gap-3 @md:gap-4">
-          <div className="reveal-img relative col-span-12 rounded-2xl overflow-hidden border border-border flex items-end min-h-[40vh] md:min-h-[50vh] group">
-            <img
-  src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/481666884_3991445904511489_3973845326439655280_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=oFbbBWqa8BAQ7kNvwEy_6z-&_nc_oc=AdoqTcNDLmn_zchKfDAxQpVGmJvhLPfAbvxLhk7v25c7as2GdprfEylttOh8w5MYINA&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=JzS1E4M_wjaEo4kNj8Iogw&_nc_ss=7b289&oh=00_Af7yRT1ScyxGWIxecBrL6V8u6qAJ9Ft1yln9_kBooKfOxw&oe=6A0E5C58"
-              alt="Interior tienda Virus Jeans"
-              className="absolute inset-0 w-full h-full object-cover img-reveal group-hover:scale-105 transition-transform duration-700"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-background/10" />
-          </div>
-          <div className="reveal-img col-span-6 @md:col-span-5 aspect-square rounded-2xl overflow-hidden border border-border relative group">
-            <img
-  src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/481144195_3991446244511455_8347602001065588288_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rdOjhi5bInEQ7kNvwENdYlp&_nc_oc=AdqGZjpRf7p1YOD1PDtMzzha65VDA0CNvYmt6OqYJJDIfSfzGfW_DGd0jjE8tILewWU&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=IIs2KDJF2281lqwfJd4-tQ&_nc_ss=7b289&oh=00_Af46G7tQCQ2ZMP32tEruLlRoniCOxbuh7_TvLdDROD3pLQ&oe=6A0E5F83"
-              alt="Productos"
-              className="w-full h-full object-cover img-reveal group-hover:scale-105 transition-transform duration-700"
-              loading="lazy"
-            />
-          </div>
+         <div className="grid grid-cols-12 gap-3 @md:gap-4">
+           <div className="reveal-img relative col-span-12 rounded-2xl overflow-hidden border border-border h-[300px] md:h-[50vh] group">
+             <img
+               src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/481666884_3991445904511489_3973845326439655280_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=oFbbBWqa8BAQ7kNvwEy_6z-&_nc_oc=AdoqTcNDLmn_zchKfDAxQpVGmJvhLPfAbvxLhk7v25c7as2GdprfEylttOh8w5MYINA&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=JzS1E4M_wjaEo4kNj8Iogw&_nc_ss=7b289&oh=00_Af7yRT1ScyxGWIxecBrL6V8u6qAJ9Ft1yln9_kBooKfOxw&oe=6A0E5C58"
+               alt="Interior tienda Virus Jeans"
+               className="absolute inset-0 w-full h-full object-cover img-reveal group-hover:scale-105 transition-transform duration-700"
+               loading="lazy"
+             />
+             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/30 to-background/10" />
+           </div>
+           <div className="reveal-img col-span-6 @md:col-span-5 aspect-square rounded-2xl overflow-hidden border border-border relative group">
+             <img
+               src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/481144195_3991446244511455_8347602001065588288_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rdOjhi5bInEQ7kNvwENdYlp&_nc_oc=AdqGZjpRf7p1YOD1PDtMzzha65VDA0CNvYmt6OqYJJDIfSfzGfW_DGd0jjE8tILewWU&_nc_zt=23&_nc_ht=scontent-bog2-1.xx&_nc_gid=IIs2KDJF2281lqwfJd4-tQ&_nc_ss=7b289&oh=00_Af46G7tQCQ2ZMP32tEruLlRoniCOxbuh7_TvLdDROD3pLQ&oe=6A0E5F83"
+               alt="Productos"
+               className="w-full h-full object-cover img-reveal group-hover:scale-105 transition-transform duration-700"
+               loading="lazy"
+             />
+           </div>
+
           <GradientCard />
         </div>
       </div>

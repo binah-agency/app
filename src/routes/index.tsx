@@ -455,13 +455,14 @@ function Categories() {
       link: "https://smart-outsourcing-business-consulting-virus-jeans.odoo.com/shop?search=&attribute_value=2-1571",
       img: "https://smart-outsourcing-business-consulting-virus-jeans.odoo.com/web/image/product.product/19635/image_1024/%5BCB225%5D%20Pantalon%20Casual%20Juvenil%20%20%5BCA-05%5D?unique=04140a9",
     },
-    {
-      name: "Multimarca",
-      desc: "Las mejores marcas",
-      icon: Star,
-      count: "80+ piezas",
-      img: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&q=80",
-    },
+     {
+       name: "Multimarca",
+       desc: "Las mejores marcas",
+       icon: Star,
+       count: "80+ piezas",
+       img: LOGO,
+     },
+
   ];
   return (
     <section id="categorias" className="py-24 px-5 md:px-8">

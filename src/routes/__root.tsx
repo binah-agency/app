@@ -95,20 +95,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Virus Jeans, C.A." },
-      { property: "og:url", content: "https://cosmic-glow-spark.lovable.app" },
-      {
-        property: "og:image",
-        content:
-          "https://img1.wsimg.com/isteam/ip/8d039810-0b99-40b7-a7f3-03e3cfec8e0e/AZUL_NEGRO%20M.%20Virus%20Jeans-04.png",
-      },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Virus Jeans, C.A." },
-      { name: "twitter:description", content: "Moda y jeans al mayor en Valencia, Venezuela." },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: "https://cosmic-glow-spark.lovable.app" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+       { property: "og:url", content: "https://virusjeans.com" },
+       {
+         property: "og:image",
+         content:
+           "https://img1.wsimg.com/isteam/ip/8d039810-0b99-40b7-a7f3-03e3cfec8e0e/AZUL_NEGRO%20M.%20Virus%20Jeans-04.png",
+       },
+       { name: "twitter:card", content: "summary_large_image" },
+       { name: "twitter:title", content: "Virus Jeans, C.A." },
+       { name: "twitter:description", content: "Moda y jeans al mayor en Valencia, Venezuela." },
+     ],
+     links: [
+       { rel: "stylesheet", href: appCss },
+       { rel: "canonical", href: "https://virusjeans.com" },
+       { rel: "preconnect", href: "https://fonts.googleapis.com" },
+
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
@@ -124,9 +125,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "Virus Jeans, C.A.",
           image:
             "https://img1.wsimg.com/isteam/ip/8d039810-0b99-40b7-a7f3-03e3cfec8e0e/AZUL_NEGRO%20M.%20Virus%20Jeans-04.png",
-          telephone: "+584244210696",
-          url: "https://cosmic-glow-spark.lovable.app",
-          address: {
+           telephone: "+584244210696",
+           url: "https://virusjeans.com",
+           address: {
+
             "@type": "PostalAddress",
             streetAddress: "Calle 93 Niro Cívico, 91-75 Local Lote L-28 Barrio El Terminal",
             addressLocality: "Valencia",

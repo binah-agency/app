@@ -587,12 +587,14 @@ function GlowCard({ className, children }: { className?: string; children: React
 
 function BenefitCard({ icon: Icon, title, desc }: { icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; title: string; desc: string }) {
   return (
-    <GlowCard className="reveal p-8 rounded-2xl border border-border/60 bg-brand/10 backdrop-blur-sm transition-colors">
-      <div className="w-12 h-12 rounded-xl bg-brand/20 grid place-items-center mb-6">
-        <Icon className="w-6 h-6" style={{ color: "oklch(0.72 0.26 260)" }} />
+    <GlowCard className="reveal p-5 @md:p-8 rounded-2xl border border-border/60 bg-brand/10 backdrop-blur-sm transition-colors flex items-start gap-4 @md:gap-6">
+      <div className="w-10 h-10 @md:w-12 @md:h-12 rounded-xl bg-brand/20 grid place-items-center shrink-0">
+        <Icon className="w-5 h-5 @md:w-6 @md:h-6" style={{ color: "oklch(0.72 0.26 260)" }} />
       </div>
-      <h3 className="font-[Archivo_Black,sans-serif] text-xl uppercase mb-3">{title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+      <div>
+        <h3 className="font-[Archivo_Black,sans-serif] text-lg @md:text-xl uppercase mb-1 @md:mb-3">{title}</h3>
+        <p className="text-xs @md:text-sm text-muted-foreground leading-relaxed">{desc}</p>
+      </div>
     </GlowCard>
   );
 }

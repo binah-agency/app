@@ -159,6 +159,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="es">
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{
+          __html: `document.documentElement.classList.toggle("dark",localStorage.getItem("theme")==="dark")`,
+        }} />
       </head>
       <body>
         <noscript>
